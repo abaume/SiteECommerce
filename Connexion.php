@@ -16,11 +16,11 @@ if (!isset($_POST['pseudo']))
 {
   ?>
    <div class="container-fluid">
-    <form method="post" action="Traite_Connexion.php?url=%3C?php%20echo%20$_REQUEST[">
+    <form method="post" action="Traite_Connexion.php">
 	<fieldset>
   <legend> <h1>Connexion</h1> </legend>
   <p>
-  <label for="pseudo"> Pseudo :</label><input name="pseudo" type="text" id="pseudo"/>
+  <label for="Login"> Pseudo :</label><input name="Login" type="text" id="Login"/>
     <br />
   <label for="password"> Mot de passe : </label><input name="Password" type="text" id="password"/>
     </p>
