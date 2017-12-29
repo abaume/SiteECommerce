@@ -27,7 +27,7 @@ if (!isset($_POST['pseudo']))
     </fieldset>
     <p>
     <input name="Connect" type="submit" value="Connecter" /></form>
-    <a href="/register.php"> Pas encore inscrit ?</a>
+    <a href="enregistrement.php"> Pas encore inscrit ?</a>
 	</div>
   <?php
 }
