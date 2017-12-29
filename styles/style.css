@@ -23,11 +23,11 @@
     background-color: #111;
 }
 
-li.bouton_gauche {
+#menu_horizontal li.bouton_gauche {
     float: left;
 }
 
-li.bouton_droite {
+#menu_horizontal li.bouton_droite {
     float: right;
 }
 
