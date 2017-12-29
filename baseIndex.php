@@ -10,13 +10,23 @@
     <div class="navbar">
       <ul>
         <li>
-          <a href="#acceuil">Acceuil</a>
+          <a href = "baseIndex.php">Acceuil</a>
         </li>
-        <li>
-          <a href="#listeAlpha">Liste alphabétique</a>
+        <li class="dropdown">
+          <a href="#listeAlpha" class="dropbtn">Liste alphabétique</a>
+		  <div class="dropdown-content">
+			  <a href="compositeur">Compositeurs</a>
+			  <a href="interprete">Interprètes</a>
+			  <a href="chef">Chefs d'orchestre</a>
+			  <a href="orchestre">Orchestres</a>
+			</div>
         </li>
-        <li>
-          <a href="#epoque">Par époques</a>
+        <li class="dropdown">
+          <a href="#epoque" class="dropbtn">Par époques</a>
+		  <div class="dropdown-content">
+			  <a href="compositeur">Compositeurs</a>
+			  <a href="interprete">Interprètes</a>
+			</div>
         </li>
         <li>
           <a href="#instrument">Instruments</a>
