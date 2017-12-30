@@ -10,10 +10,10 @@
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
 <div style="margin-left:25%">
-<h3>Musiciens commancants par une lettre</h3> 
+<h3>Musiciens commancants par la/les lettre(s)...</h3> 
 
 <form method="get">
-	Lettre: <input type="text" name="n" /><br />
+	Lettre(s): <input type="text" name="n" /><br />
 	<input type="submit" value="Afficher (longue attente)" /><br /><br />
 </form>
 
@@ -34,13 +34,6 @@ if (!empty($_GET["n"])) {
 	$lettre = $_GET["n"];
 	$requete = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien, Photo from Musicien Where Nom_Musicien Like '$lettre%'";
 	  $buffer = $pdo->query($requete);
-	  // header("Content-Type: image/jpeg");
-	  // header("Accept-Ranges: bytes");
-	  // header('Content-Length: ' . sizeof($buffer));
-	  // echo $buffer;
-		// $buffer = base64_decode($buffer);
-		// $image = imagecreatefromstring($im);
-
 
 	foreach ($pdo->query($requete) as $row) {
 		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>" . $row['Photo']. "<br>". "<br>";
@@ -50,14 +43,6 @@ if (!empty($_GET["n"])) {
 } else {
 	echo "écrivez une lettre dans la case !";
 }
-
-// echo " <h3>Musiciens commancants par B</h3>" ;
-//
-// $requete = "Select Nom_Musicien from Musicien Where Nom_Musicien Like 'B%' ";
-// foreach ($pdo->query($requete) as $row) {
-// 	echo 'Nom : ' . $row['Nom_Musicien']. "<br>";
-// }
-// $pdo = null;
 ?>
 </div>
 </body>
