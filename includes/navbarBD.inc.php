@@ -15,8 +15,8 @@
         <li class="dropdown">
           <a href="#epoque" class="dropbtn">Par époques</a>
 		  <div class="dropdown-content">
-			  <a href="compositeur.php">Compositeurs</a>
-			  <a href="interprete.php">Interprètes</a>
+			  <a href="compositeurEpoque.php">Compositeurs</a>
+			  <a href="interpreteEpoque.php">Interprètes</a>
 			</div>
         </li>
         <li>
