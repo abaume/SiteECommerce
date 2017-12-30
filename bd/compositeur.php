@@ -10,7 +10,7 @@
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
 <div style="margin-left:25%">
-<h3>Musiciens commancants par la/les lettre(s)...</h3> 
+<h3>Compositeurs commancants par la/les lettre(s)...</h3> 
 
 <form method="get">
 	Lettre(s): <input type="text" name="n" /><br />
@@ -40,9 +40,9 @@ if (!empty($_GET["n"])) {
 	}
 	$pdo = null;
 
-} else {
-	echo "écrivez une lettre dans la case !";
-}
+}// else {
+//	echo "écrivez une lettre dans la case !";
+//}
 ?>
 </div>
 </body>
