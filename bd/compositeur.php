@@ -1,9 +1,15 @@
-<?php include('/includes/head.inc.php'); ?>
-	<title>base de données</title>
-	</head> 
-	<?php include('/includes/menu.inc.php'); ?>
+<?php include('../includes/headBD.inc.php'); ?>
+<html>
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <title>base de données</title>
+  </head><?php include('../includes/menuBD.inc.php'); ?>
+  <body>
 
 <h1>Base de données</h1> 
+<?php include('../includes/navbarBD.inc.php'); ?>
+<div style="margin-left:25%">
 <h3>Musiciens commancants par une lettre</h3> 
 
 <form method="get">
@@ -52,7 +58,7 @@ if (!empty($_GET["n"])) {
 // 	echo 'Nom : ' . $row['Nom_Musicien']. "<br>";
 // }
 // $pdo = null;
-
-echo " </body>" ;
-echo " </html>" ;
 ?>
+</div>
+</body>
+</html>
