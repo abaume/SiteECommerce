@@ -13,8 +13,19 @@
 <h3>Interprètes de l'époque...</h3> 
 
 <form method="get">
-	Lettre(s): <input type="text" name="n" /><br />
-	<input type="submit" value="Afficher (longue attente)" /><br /><br />
+<p>
+<div class="btn-group">
+	<input type="submit" value="Antiquité" name="epoque" class="bt"/>
+	<input type="submit" value="Moyen-Age" name="epoque" class="bt"/>
+	<input type="submit" value="16ème siècle" name="epoque" class="bt"/>
+	<input type="submit" value="17ème siècle" name="epoque" class="bt"/>
+	<input type="submit" value="18ème siècle" name="epoque" class="bt"/>
+	<input type="submit" value="19ème siècle" name="epoque" class="bt"/>
+	<input type="submit" value="20ème siècle" name="epoque" class="bt"/>
+	<input type="submit" value="21ème siècle" name="epoque" class="bt"/>
+</div>
+</p>
+<br /><br />
 </form>
 
 <?php
@@ -29,10 +40,47 @@ $pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
 // $pdodsn = "dblib:version=7.0;charset=UTF-8;host=$host;dbname=$nomDb";
 // Connexion PDO
 $pdo = new PDO($pdodsn, $user, $password);
+	
+$$Date_Max;
+$$Date_Min;
 
-if (!empty($_GET["n"])) {
-	$lettre = $_GET["n"];
-	$requete = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien, Photo from Musicien Where Nom_Musicien Like '$lettre%'";
+if (!empty($_GET["epoque"])) {
+	$epoque = $_GET["epoque"];	
+	switch (epoque){
+	case Antiquité:
+	$Date_Min = -9999;
+	$Date_Max = 476;
+	break;
+	case Moyen-Age:
+	$Date_Min = 476;
+	$Date_Max = 1500;
+	break;
+	case "16ème siècle":
+	$Date_Min = 1500;
+	$Date_Max = 1600;
+	break;
+	case "17ème siècle":
+	$Date_Min = 1600;
+	$Date_Max = 1700;
+	break;
+	case "18ème siècle":
+	$Date_Min = 1700;
+	$Date_Max = 1800;
+	break;
+	case "19ème siècle":
+	$Date_Min = 1800;
+	$Date_Max = 1900;
+	break;
+	case "20ème siècle":
+	$Date_Min = 1900;
+	$Date_Max = 2000;
+	break;
+	case "21ème siècle":
+	$Date_Min = 2000;
+	$Date_Max = 2100;
+	break;
+	}
+	$requete = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien, Photo from Musicien Inner Join Interpréter ON Interpréter.Code_Musicien = Musicien.Code_Musicien Where Musicien.Annee_Naissance < $Date_Max And Musicien.Annee >= $Date_Min";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {

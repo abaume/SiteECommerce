@@ -12,11 +12,8 @@
 <div style="margin-left:25%">
 <h3>Instruments</h3> 
 
-<form method="get">
-	Lettre(s): <input type="text" name="n" /><br />
-	<input type="submit" value="Afficher (longue attente)" /><br /><br />
-</form>
-
+<p>
+	
 <?php
 // Paramètres de connexion
 $host = 'INFO-SIMPLET';
@@ -30,20 +27,20 @@ $pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
 // Connexion PDO
 $pdo = new PDO($pdodsn, $user, $password);
 
-if (!empty($_GET["n"])) {
 	$lettre = $_GET["n"];
-	$requete = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien, Photo from Musicien Where Nom_Musicien Like '$lettre%'";
+	$requete = "Select Nom_Musicien, Prénom_Musicien, Nom_Instrument, Instrument.photo from Musicien Inner Join Instrument On Instrument.Code_Instrument = Musicien.Code_Instrument Group By Nom_Insrument";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>" . $row['Photo']. "<br>". "<br>";
+		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". "<br>". "<br>"; //nom instrument image
 	}
 	$pdo = null;
 
-}// else {
+// else {
 //	echo "écrivez une lettre dans la case !";
 //}
 ?>
+</p>
 </div>
 </body>
 </html>

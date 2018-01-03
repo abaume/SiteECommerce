@@ -189,3 +189,16 @@ footer a:visited {
 .navbar .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.btn-group input{
+  background-color: #333;
+  border: 1px solid black;
+  color: white;
+  padding: 10px 24px;
+  float: left;
+}
+
+.btn-group  input:hover {
+  background: #111;
+  text-decoration: none;
+}

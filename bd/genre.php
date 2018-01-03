@@ -13,8 +13,23 @@
 <h3>Genres</h3> 
 
 <form method="get">
-	Lettre(s): <input type="text" name="n" /><br />
-	<input type="submit" value="Afficher (longue attente)" /><br /><br />
+<p>
+<div class="btn-group">
+	
+	<input type="submit" value="Moyen Age" name="genre" class="bt"/>
+	<input type="submit" value="Renaissance" name="genre" class="bt"/>
+	<input type="submit" value="Baroque" name="genre" class="bt"/>
+	<input type="submit" value="Classique" name="genre" class="bt"/>
+	<input type="submit" value="Romantique" name="genre" class="bt"/>
+	<input type="submit" value="Moderne" name="genre" class="bt"/>
+	<input type="submit" value="Comptemporain" name="genre" class="bt"/>
+	<input type="submit" value="Opera" name="genre" class="bt"/>
+	<input type="submit" value="Musique Sacrée" name="genre" class="bt"/>
+	<input type="submit" value="Oratorio" name="genre" class="bt"/>
+	<input type="submit" value="Musique ancienne" name="genre" class="bt"/>
+</div>
+</p>
+<br /><br />
 </form>
 
 <?php
@@ -30,17 +45,18 @@ $pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
 // Connexion PDO
 $pdo = new PDO($pdodsn, $user, $password);
 
-if (!empty($_GET["n"])) {
-	$lettre = $_GET["n"];
-	$requete = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien, Photo from Musicien Where Nom_Musicien Like '$lettre%'";
+if (!empty($_GET["genre"])) {
+	$genre = $_GET["genre"];
+	
+	$requete = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien, Photo from Musicien Inner Join Genre ON Musicien.Code_Oeuvre = Genre.Code_Oeuvre Where Genre.Libelle_Genre Like '$genre'";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
 		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>" . $row['Photo']. "<br>". "<br>";
 	}
 	$pdo = null;
-
-}// else {
+}
+// else {
 //	echo "écrivez une lettre dans la case !";
 //}
 ?>
