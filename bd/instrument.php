@@ -28,7 +28,7 @@ $pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
 $pdo = new PDO($pdodsn, $user, $password);
 
 	$lettre = $_GET["n"];
-	$requete = "Select Nom_Musicien, Prénom_Musicien, Nom_Instrument, Instrument.photo from Musicien Inner Join Instrument On Instrument.Code_Instrument = Musicien.Code_Instrument Group By Nom_Insrument";
+	$requete = "Select Distinct Nom_Musicien, Prénom_Musicien, Nom_Instrument, Instrument.photo from Musicien Inner Join Instrument On Instrument.Code_Instrument = Musicien.Code_Instrument Group By Nom_Insrument";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {

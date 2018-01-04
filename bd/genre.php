@@ -48,7 +48,7 @@ $pdo = new PDO($pdodsn, $user, $password);
 if (!empty($_GET["genre"])) {
 	$genre = $_GET["genre"];
 	
-	$requete = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien, Photo from Musicien Inner Join Genre ON Musicien.Code_Oeuvre = Genre.Code_Oeuvre Where Genre.Libelle_Genre Like '$genre'";
+	$requete = "Select Distinct Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien, Photo from Musicien Inner Join Genre ON Musicien.Code_Oeuvre = Genre.Code_Oeuvre Where Genre.Libelle_Genre Like '$genre'";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {

@@ -80,7 +80,7 @@ if (!empty($_GET["epoque"])) {
 	$Date_Max = 2100;
 	break;
 	}
-	$requete = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien, Photo from Musicien Inner Join Interpréter ON Interpréter.Code_Musicien = Musicien.Code_Musicien Where Musicien.Annee_Naissance < $Date_Max And Musicien.Annee >= $Date_Min";
+	$requete = "Select Distinct Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien, Photo from Musicien Inner Join Interpréter ON Interpréter.Code_Musicien = Musicien.Code_Musicien Where Musicien.Annee_Naissance < $Date_Max And Musicien.Annee >= $Date_Min";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {

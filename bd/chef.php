@@ -32,7 +32,7 @@ $pdo = new PDO($pdodsn, $user, $password);
 
 if (!empty($_GET["n"])) {
 	$lettre = $_GET["n"];
-	$requete = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien, Photo from Musicien Inner Join Direction ON Direction.Code_Musicien = Musicien.Code_Musicien Inner Join Orchestre ON Orchestre.Code_Orchestre = Direction.Code_Orchestre Where Nom_Musicien Like '$lettre%'";
+	$requete = "Select Distinct Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien, Photo from Musicien Inner Join Direction ON Direction.Code_Musicien = Musicien.Code_Musicien Inner Join Orchestre ON Orchestre.Code_Orchestre = Direction.Code_Orchestre Where Nom_Musicien Like '$lettre%'";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
