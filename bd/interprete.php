@@ -32,11 +32,11 @@ $pdo = new PDO($pdodsn, $user, $password);
 
 if (!empty($_GET["n"])) {
 	$lettre = $_GET["n"];
-	$requete = "Select Distinct Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien, Photo from Musicien Inner Join Interpréter ON Interpréter.Code_Musicien = Musicien.Code_Musicien Where Nom_Musicien Like '$lettre%'";
+	$requete = "Select Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien from Musicien Inner Join Interpréter ON Interpréter.Code_Musicien = Musicien.Code_Musicien Where Nom_Musicien Like '$lettre%' Group By Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>" . $row['Photo']. "<br>". "<br>";
+		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>". "<br>". "<br>";
 	}
 	$pdo = null;
 
