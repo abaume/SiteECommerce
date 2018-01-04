@@ -16,13 +16,12 @@
 <p>
 <div class="btn-group">
 	<input type="submit" value="Antiquité" name="epoque" class="bt"/>
-	<input type="submit" value="Moyen-Age" name="epoque" class="bt"/>
+	<input type="submit" value="Moyen Age" name="epoque" class="bt"/>
 	<input type="submit" value="16ème siècle" name="epoque" class="bt"/>
 	<input type="submit" value="17ème siècle" name="epoque" class="bt"/>
 	<input type="submit" value="18ème siècle" name="epoque" class="bt"/>
 	<input type="submit" value="19ème siècle" name="epoque" class="bt"/>
 	<input type="submit" value="20ème siècle" name="epoque" class="bt"/>
-	<input type="submit" value="21ème siècle" name="epoque" class="bt"/>
 </div>
 </p>
 <br /><br />
@@ -41,17 +40,14 @@ $pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
 // Connexion PDO
 $pdo = new PDO($pdodsn, $user, $password);
 
-$$Date_Max;
-$$Date_Min;
-
 if (!empty($_GET["epoque"])) {
 	$epoque = $_GET["epoque"];	
-	switch (epoque){
-	case Antiquité:
+	switch ($epoque){
+	case "Antiquité":
 	$Date_Min = -9999;
 	$Date_Max = 476;
 	break;
-	case Moyen-Age:
+	case "Moyen Age":
 	$Date_Min = 476;
 	$Date_Max = 1500;
 	break;
@@ -75,16 +71,13 @@ if (!empty($_GET["epoque"])) {
 	$Date_Min = 1900;
 	$Date_Max = 2000;
 	break;
-	case "21ème siècle":
-	$Date_Min = 2000;
-	$Date_Max = 2100;
-	break;
 	}
-	$requete = "Select Distinct Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien, Photo from Musicien Inner Join Composer ON Composer.Code_Musicien = Musicien.Code_Musicien Where Musicien.Annee_Naissance < $Date_Max And Musicien.Annee >= $Date_Min";
+	
+	$requete = "Select Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien from Musicien Inner Join Composer On Composer.Code_Musicien = Musicien.Code_Musicien Where Musicien.Année_Naissance < $Date_Max And Musicien.Année_Naissance >= $Date_Min Group By Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>" . $row['Photo']. "<br>". "<br>";
+		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>". "<br>". "<br>";
 	}
 	$pdo = null;
 
