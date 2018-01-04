@@ -35,7 +35,7 @@
 <?php
 // Paramètres de connexion
 $host = 'INFO-SIMPLET';
-$nomDb = 'Classique';
+$nomDb = 'Classique_Web';
 $user = 'ETD';
 $password = 'ETD';
 // Chaîne de connexion (Windows)
@@ -48,11 +48,12 @@ $pdo = new PDO($pdodsn, $user, $password);
 if (!empty($_GET["genre"])) {
 	$genre = $_GET["genre"];
 	
-	$requete = "Select Distinct Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien, Photo from Musicien Inner Join Genre ON Musicien.Code_Oeuvre = Genre.Code_Oeuvre Where Genre.Libelle_Genre Like '$genre'";
+	$requete = "Select Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien from Musicien Inner Join Genre ON Musicien.Code_Genre = Genre.Code_Genre Where Genre.Libellé_Abrégé Like '%$genre%' Group By Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>" . $row['Photo']. "<br>". "<br>";
+		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>" . "<br>". "<br>";
+		echo $genre;
 	}
 	$pdo = null;
 }
