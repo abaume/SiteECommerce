@@ -27,12 +27,17 @@ $pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
 // Connexion PDO
 $pdo = new PDO($pdodsn, $user, $password);
 
-	$lettre = $_GET["n"];
-	$requete = "Select Distinct Nom_Musicien, Prénom_Musicien, Nom_Instrument, Instrument.photo from Musicien Inner Join Instrument On Instrument.Code_Instrument = Musicien.Code_Instrument Group By Nom_Insrument";
-	  $buffer = $pdo->query($requete);
+	$requete1 = "Select Instrument.Nom_Instrument from Instrument";
+	$buffer = $pdo->query($requete1);	
 
-	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". "<br>". "<br>"; //nom instrument image
+	foreach ($pdo->query($requete1) as $row) {
+		echo "<h3>". $row['Nom_Instrument']. "</h3>";
+		$instru = $row['Nom_Instrument'];
+		$requete2 = "Select Nom_Musicien, Prénom_Musicien from Musicien Inner Join Instrument On Instrument.Code_Instrument = Musicien.Code_Instrument Where Instrument.Nom_Instrument Like '$instru' Group By Nom_Musicien, Prénom_Musicien";
+		$buffer = $pdo->query($requete2);
+		foreach ($pdo->query($requete2) as $row) {
+			echo $row['Nom_Musicien']. " " . $row[utf8_decode('Prénom_Musicien')]. "<br>";
+		}
 	}
 	$pdo = null;
 
