@@ -52,8 +52,7 @@ if (!empty($_GET["genre"])) {
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>" . "<br>". "<br>";
-		echo $genre;
+		echo 'Nom : ' . "<a href=\"musicien.php?code=" . $row['Code_Musicien']. "\">" . $row['Nom_Musicien']. "</a><br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>" . "<br>". "<br>";
 	}
 	$pdo = null;
 }

@@ -10,13 +10,9 @@
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
 <div style="margin-left:25%">
-<h3>Interprètes commancants par la/les lettre(s)...</h3> 
+<h3>Musicien</h3> 
 
-<form method="get">
-	Lettre(s): <input type="text" name="n" /><br />
-	<input type="submit" value="Afficher (longue attente)" /><br /><br />
-</form>
-
+<p>	
 <?php
 // Paramètres de connexion
 $host = 'INFO-SIMPLET';
@@ -30,20 +26,22 @@ $pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
 // Connexion PDO
 $pdo = new PDO($pdodsn, $user, $password);
 
-if (!empty($_GET["n"])) {
-	$lettre = $_GET["n"];
-	$requete = "Select Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien from Musicien Inner Join Interpréter ON Interpréter.Code_Musicien = Musicien.Code_Musicien Where Nom_Musicien Like '$lettre%' Group By Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien";
-	  $buffer = $pdo->query($requete);
+if (!empty($_GET["code"])) {
+	$code = $_GET["code"];
+	
+	$requete = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien, Année_Naissance, Année_Mort, Nom_Pays from Musicien Inner Join Pays On Pays.Code_Pays = Musicien.Code_Pays Where Code_Musicien like '$code'";
+	$buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . "<a href=\"musicien.php?code=" . $row['Code_Musicien']. "\">" . $row['Nom_Musicien']. "</a><br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br><br><br>";
+		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Dates : ' . $row[utf8_decode('Année_Naissance')]. ' - ' . $row[utf8_decode('Année_Mort')]. "<br>" . 'Pays : ' . $row['Nom_Pays']. "<br>" . 'Code : '. $row['Code_Musicien'];
 	}
 	$pdo = null;
-
-}// else {
+}
+// else {
 //	echo "écrivez une lettre dans la case !";
 //}
 ?>
+</p>
 </div>
 </body>
 </html>
