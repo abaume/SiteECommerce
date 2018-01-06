@@ -33,7 +33,7 @@ if (!empty($_GET["code"])) {
 	$buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . $row['Nom_Musicien']. "<br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Dates : ' . $row[utf8_decode('Année_Naissance')]. ' - ' . $row[utf8_decode('Année_Mort')]. "<br>" . 'Pays : ' . $row['Nom_Pays']. "<br>" . 'Code : '. $row['Code_Musicien'];
+		echo 'Nom : ' . $row['Nom_Musicien']. "<br>" . 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Dates : ' . $row[utf8_decode('Année_Naissance')]. ' - ' . $row[utf8_decode('Année_Mort')]. "<br>" . 'Pays : ' . $row['Nom_Pays']. "<br>" . 'Code : '. $row['Code_Musicien'] . "<br>" . "<img src=\"/Classique/Home/Photo/" . $row['Code_Musicien'] . "\" alt=\"Photo\">";
 	}
 	$pdo = null;
 }
