@@ -17,7 +17,7 @@
 <?php
 // Paramètres de connexion
 $host = 'INFO-SIMPLET';
-$nomDb = 'Classique';
+$nomDb = 'Classique_Web';
 $user = 'ETD';
 $password = 'ETD';
 // Chaîne de connexion (Windows)

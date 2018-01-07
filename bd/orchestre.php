@@ -20,7 +20,7 @@
 <?php
 // Paramètres de connexion
 $host = 'INFO-SIMPLET';
-$nomDb = 'Classique';
+$nomDb = 'Classique_Web';
 $user = 'ETD';
 $password = 'ETD';
 // Chaîne de connexion (Windows)
@@ -32,7 +32,7 @@ $pdo = new PDO($pdodsn, $user, $password);
 
 if (!empty($_GET["n"])) {
 	$lettre = $_GET["n"];
-	$requete = "Select Nom_Orchestre, Code_Orchestre from Orchestres Where Nom_Orchestre Like '$lettre%'";
+	$requete = "Select Nom_Orchestre, Code_Orchestre from Orchestres Where Nom_Orchestre Like '$lettre%' Order By Musicien.Nom_Musicien, Musicien.Prénom_Musicien";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {

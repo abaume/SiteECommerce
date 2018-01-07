@@ -20,7 +20,7 @@
 <?php
 // Paramètres de connexion
 $host = 'INFO-SIMPLET';
-$nomDb = 'Classique';
+$nomDb = 'Classique_Web';
 $user = 'ETD';
 $password = 'ETD';
 // Chaîne de connexion (Windows)
@@ -32,7 +32,7 @@ $pdo = new PDO($pdodsn, $user, $password);
 
 if (!empty($_GET["n"])) {
 	$lettre = $_GET["n"];
-	$requete = "Select Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien from Musicien Inner Join Composer On Composer.Code_Musicien = Musicien.Code_Musicien Where Nom_Musicien Like '$lettre%' Group By Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien";
+	$requete = "Select Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien from Musicien Inner Join Composer On Composer.Code_Musicien = Musicien.Code_Musicien Where Nom_Musicien Like '$lettre%' Group By Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien Order By Musicien.Nom_Musicien, Musicien.Prénom_Musicien";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {

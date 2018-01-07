@@ -16,7 +16,7 @@
 <?php
 // Paramètres de connexion
 $host = 'INFO-SIMPLET';
-$nomDb = 'Classique';
+$nomDb = 'Classique_Web';
 $user = 'ETD';
 $password = 'ETD';
 // Chaîne de connexion (Windows)
@@ -33,7 +33,30 @@ if (!empty($_GET["code"])) {
 	$buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . $row['Nom_Musicien']. "<br>" . 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Dates : ' . $row[utf8_decode('Année_Naissance')]. ' - ' . $row[utf8_decode('Année_Mort')]. "<br>" . 'Pays : ' . $row['Nom_Pays']. "<br>" . 'Code : '. $row['Code_Musicien'] . "<br>" . "<img src=\"/Classique/Home/Photo/" . $row['Code_Musicien'] . "\" alt=\"Photo\">";
+		echo 
+		"<h3>". $row['Nom_Musicien'] . " " . $row[utf8_decode('Prénom_Musicien')] . "</h3>" .
+		'Nom : ' . $row['Nom_Musicien']. "<br>" .
+		'Prénom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>".
+		'Dates : ' . $row[utf8_decode('Année_Naissance')]. ' - ' . $row[utf8_decode('Année_Mort')]. "<br>" .
+		'Pays : ' . $row['Nom_Pays']. "<br>" .
+		'Code : '. $row['Code_Musicien'] . "<br>" .
+		"<img src=\"/Classique/Home/Photo/" . $row['Code_Musicien'] . "\" alt=\"Photo\">";
+	}
+	
+	echo "<h3> Album(s) </h3>";
+	
+	$requete = "Select Distinct Titre_Album, Album.Code_Album from Album
+	Inner Join Disque On Disque.Code_Album = Album.Code_Album
+	Inner Join Composition_Disque On Disque.Code_Disque = Composition_Disque.Code_Disque
+	Inner Join Interpréter On Interpréter.Code_Morceau = Composition_Disque.Code_Morceau
+	Inner Join Musicien On Musicien.Code_Musicien= Interpréter.Code_Musicien 
+	Where Musicien.Code_Musicien like '$code'";
+	$buffer = $pdo->query($requete);
+	
+	foreach ($pdo->query($requete) as $row) {
+		echo 
+		"<h4>". $row['Titre_Album'] . "</h4>" .
+		"<img src=\"/Classique/Home/Pochette/" . $row['Code_Album'] . "\" alt=\"Photo\" width=\"100\">";
 	}
 	$pdo = null;
 }
