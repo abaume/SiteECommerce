@@ -36,7 +36,7 @@ $pdo = new PDO($pdodsn, $user, $password);
 		$requete2 = "Select Nom_Musicien, Prénom_Musicien, Code_Musicien from Musicien Inner Join Instrument On Instrument.Code_Instrument = Musicien.Code_Instrument Where Instrument.Nom_Instrument Like '$instru' Group By Nom_Musicien, Prénom_Musicien, Code_Musicien";
 		$buffer = $pdo->query($requete2);
 		foreach ($pdo->query($requete2) as $row) {
-			echo "<a href=\"musicien.php?code=" . $row['Code_Musicien']. "\">" .$row['Nom_Musicien']. " " . $row[utf8_decode('Prénom_Musicien')]. "</a><br>";
+			echo "<a href=\"musicien.php?fonction=interprete&code=" . $row['Code_Musicien']. "\">" .$row['Nom_Musicien']. " " . $row[utf8_decode('Prénom_Musicien')]. "</a><br>";
 		}
 	}
 	$pdo = null;

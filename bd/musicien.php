@@ -85,7 +85,7 @@ if (!empty($_GET["code"]) && !empty($_GET["fonction"])) {
 	
 	foreach ($pdo->query($requete) as $row) {
 		echo 
-		"<h4>". $row['Titre_Album'] . "</h4>" .
+		"<h4><a href=\"album.php?code=" . $row['Code_Album'] . "\">" . $row['Titre_Album'] . "</a></h4>" .
 		"<img src=\"/Classique/Home/Pochette/" . $row['Code_Album'] . "\" alt=\"Photo\" width=\"100\">";
 	}
 	$pdo = null;
