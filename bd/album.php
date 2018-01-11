@@ -10,7 +10,7 @@
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
 <div style="margin-left:25%">
-<h3>Musicien - détails</h3> 
+<h3>Album</h3> 
 
 <p>	
 <?php

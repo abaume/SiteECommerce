@@ -32,11 +32,11 @@ $pdo = new PDO($pdodsn, $user, $password);
 
 if (!empty($_GET["n"])) {
 	$lettre = $_GET["n"];
-	$requete = "Select Nom_Orchestre, Code_Orchestre from Orchestres Where Nom_Orchestre Like '$lettre%' Order By Musicien.Nom_Musicien, Musicien.Prénom_Musicien";
-	  $buffer = $pdo->query($requete);
+	$requete = "Select Nom_Orchestre, Code_Orchestre from Orchestres Where Nom_Orchestre Like '$lettre%' Order By Nom_Orchestre, Code_Orchestre";
+	$buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . $row['Nom_Orchestre']. "<br>". 'Code : '. $row['Code_Orchestre']. "<br>";
+		echo 'Nom : ' . "<a href=\"musicien.php?fonction=orchestre&code=" . $row['Code_Orchestre'] . "\">" . $row['Nom_Orchestre']. "</a>" . "<br>". 'Code : '. $row['Code_Orchestre']. "<br>";
 	}
 	$pdo = null;
 
