@@ -5,3 +5,5 @@
 <li class="bouton_droite"><a href = "panier.php"> Mon panier </a></li>
 <li class="bouton_droite"><a href = "connexion.php"> Connexion </a></li>
 </ul>
+
+<input type="hidden" name="page" value="<?php echo $_SERVER['HTTP_REFERER']; ?>" />

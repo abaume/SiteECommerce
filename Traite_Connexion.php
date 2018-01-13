@@ -9,6 +9,8 @@
     $pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
     // Connexion PDO
     $pdo = new PDO($pdodsn, $user, $password);
+    
+    // récupération de l'url de la page
     $url=$_REQUEST["url"];
 
     // // Validation des paramètres
@@ -24,23 +26,12 @@
 	Vous devez remplir tous les champs</p>
 	<p>Cliquez <a href="./connexion.php">ici</a> pour revenir</p>';
     } else {
-      //  $requete = ; /*and Password =':password'*/
-       // $response = $pdo->prepare("SELECT * FROM Abonné WHERE Login= \' zzz \';") or die(print_r($pdo->errorInfo()));
-        // $response->bindValue(':login', $_REQUEST['Login'], PDO::PARAM_STR);
-        // $response->execute();
-        //$response->execute(array(':login' => $_REQUEST['Login'])); /*, 'password' => $_REQUEST['Password']*/
-       // $data = $response->fetch();
        $log = $_REQUEST['Login'];
-
-    //    $sql= "SELECT * FROM Abonné WHERE Login = $log;";
-    //    $rep = $pdo->query($sql);
-
-        $rep = $pdo->query("SELECT * FROM Abonné WHERE Login= '$log' ") or die(print_r($pdo->errorInfo()));
-
+       $rep = $pdo->query("SELECT * FROM Abonné WHERE Login= '$log' ") or die(print_r($pdo->errorInfo()));
        $data=$rep->fetch();
 
-        echo "Login data :" . $data['Login'] . " Login request : ". $_REQUEST['Login'];
-        echo "Password data :" . $data['Password'] . " Password request : ". $_REQUEST['Password'];
+        // echo "Login data :" . $data['Login'] . " Login request : ". $_REQUEST['Login'];
+        // echo "Password data :" . $data['Password'] . " Password request : ". $_REQUEST['Password'];
 
         if ($data['Password'] == $_REQUEST['Password']) {
             $_SESSION['Login'] = $data['Login'];

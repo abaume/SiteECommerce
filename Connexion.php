@@ -31,6 +31,9 @@ if (!isset($_POST['pseudo']))
     <a href="enregistrement.php"> Pas encore inscrit ?</a>
 	</div>
   <?php
+// $page = htmlspecialchars($_REQUEST['page']);
+// echo 'Cliquez <a href="'.$page.'">ici</a> pour revenir à la page précédente';
+
 }
 ?>
   </body>

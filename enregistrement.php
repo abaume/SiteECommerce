@@ -17,11 +17,11 @@ $url = $_SERVER["REQUEST_URI"];
 if (empty($_POST['pseudo'])) {
     ?>
     <h1>Inscription</h1>
-    <form method="post" action="functions/Traite_Inscription.php">
+    <form method="post" action="Traite_Enregistrement.php">
     <fieldset> 
         <legend> Identifiants </legend> 
-        <label for="pseudo"> *Pseudo :</label> <input name="pseudo" type ="text" id="pseudo"/> <br/>
-        <label for="password"> *Mot de Passe :</label> <input name="password" type="password" id="password" /> <br/> 
+        <label for="pseudo"> *Pseudo :</label> <input name="Login" type ="text" id="pseudo"/> <br/>
+        <label for="password"> *Mot de Passe :</label> <input name="Password" type="password" id="password" /> <br/> 
     </fieldset> 
     <fieldset> 
         <legend> Coordonnées </legend> 
