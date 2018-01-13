@@ -2,7 +2,7 @@
     require('valide.php');
 // Paramètres de connexion
     $host = 'INFO-SIMPLET';
-    $nomDb = 'Classique';
+    $nomDb = 'Classique_Web';
     $user = 'ETD';
     $password = 'ETD';
     // Chaîne de connexion (Windows)
@@ -25,14 +25,22 @@
 	<p>Cliquez <a href="./connexion.php">ici</a> pour revenir</p>';
     } else {
       //  $requete = ; /*and Password =':password'*/
-        $response = $pdo->prepare("Select Login, Password FROM Abonné WHERE Login like ':login'") or die(print_r($pdo->errorInfo()));
-        $response->bindValue(':login', $_REQUEST['Login'], PDO::PARAM_STR);
-        $response->execute();
-      //  $response->execute(array('login' => $_REQUEST['Login'])); /*, 'password' => $_REQUEST['Password']*/
-        $data = $response->fetch();
+       // $response = $pdo->prepare("SELECT * FROM Abonné WHERE Login= \' zzz \';") or die(print_r($pdo->errorInfo()));
+        // $response->bindValue(':login', $_REQUEST['Login'], PDO::PARAM_STR);
+        // $response->execute();
+        //$response->execute(array(':login' => $_REQUEST['Login'])); /*, 'password' => $_REQUEST['Password']*/
+       // $data = $response->fetch();
+       $log = $_REQUEST['Login'];
 
-        echo $data['Login'] . "  ". $_REQUEST['Login'];
-        echo $data['Password'] . "  ". $_REQUEST['Password'];
+    //    $sql= "SELECT * FROM Abonné WHERE Login = $log;";
+    //    $rep = $pdo->query($sql);
+
+        $rep = $pdo->query("SELECT * FROM Abonné WHERE Login= '$log' ") or die(print_r($pdo->errorInfo()));
+
+       $data=$rep->fetch();
+
+        echo "Login data :" . $data['Login'] . " Login request : ". $_REQUEST['Login'];
+        echo "Password data :" . $data['Password'] . " Password request : ". $_REQUEST['Password'];
 
         if ($data['Password'] == $_REQUEST['Password']) {
             $_SESSION['Login'] = $data['Login'];
@@ -48,7 +56,7 @@
             <br /><br />Cliquez <a href="./index.php">ici</a> 
             pour revenir à la page d accueil</p>';
         }
-        $response->CloseCursor();
+        $rep->CloseCursor();
     }
     echo $message.'</div></body></html>';
 ?>
