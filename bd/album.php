@@ -38,7 +38,7 @@ if (!empty($_GET["code"])) {
 	}
 	echo "<h3> Morceaux </h3>";
 	
-    $requete = "Select Distinct Disque.Code_Disque, Album.ASIN, Enregistrement.Titre, Enregistrement.Durée from Album
+    $requete = "Select Distinct Disque.Code_Disque, Album.ASIN, Enregistrement.Titre, Enregistrement.Durée, Enregistrement.Code_Morceau from Album
 	Inner Join Disque On Disque.Code_Album = Album.Code_Album
 	Inner Join Composition_Disque On Disque.Code_Disque = Composition_Disque.Code_Disque 
 	Inner Join Enregistrement On Enregistrement.Code_Morceau = Composition_Disque.Code_Morceau
@@ -46,7 +46,9 @@ if (!empty($_GET["code"])) {
 	$buffer = $pdo->query($requete);	
 	foreach ($pdo->query($requete) as $row) {
 		echo 
-		"<h4>". $row['Titre'] . "</h4>" . "(" . $row[utf8_decode('Durée')] . ")<br>";
+		"<h4>". $row['Titre'] . "</h4>" .
+		"<audio src=\"/Classique/Home/Extrait/" . $row['Code_Morceau'] . "\" controls></audio>" .
+		"(" . $row[utf8_decode('Durée')] . ")<br>";
 		}
 	$pdo = null;
 }
