@@ -5,6 +5,7 @@
 <?php
 $id=(isset($_SESSION['id']))?(int) $_SESSION['id']:0;
 $pseudo=(isset($_SESSION['pseudo']))?$_SESSION['pseudo']:'';
+$url=$_GET["url"];
 
 session_start();
 if ($id !=0) erreur(ERR_IS_CO);
@@ -16,7 +17,7 @@ if (!isset($_POST['pseudo']))
 {
   ?>
    <div class="container-fluid">
-    <form method="post" action="Traite_Connexion.php">
+    <form method="post" action="Traite_Connexion.php?url=<?php echo $url?>">
 	<fieldset>
   <legend> <h1>Connexion</h1> </legend>
   <p>
