@@ -2,7 +2,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Accueil</title>
   </head>
-  <?php include('/includes/menu.inc.php'); ?>
+  <?php
+
+  include('/includes/menu.inc.php'); ?>
+
+<?php echo'<i>Vous êtes ici : </i><a href ="./index.php">Index du forum</a>';?>
 
     <div class="container-fluid">
     <h1>Présentation du site</h1>

@@ -9,3 +9,8 @@
     content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
+<?php 
+$PseudoUser=(isset($_SESSION['Login']))?$_SESSION['Login']:'';
+
+include("./functions/erreur.php");
+include("./functions/constant.php");

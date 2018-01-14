@@ -4,16 +4,15 @@
 <?php include('/includes/menu.inc.php'); ?>
 <?php
 $id=(isset($_SESSION['id']))?(int) $_SESSION['id']:0;
-$pseudo=(isset($_SESSION['pseudo']))?$_SESSION['pseudo']:'';
-$url=$_GET["url"];
+$pseudo=(isset($_SESSION['Login']))?$_SESSION['Login']:'';
 
-session_start();
+$url=$_SERVER['HTTP_REFERER'];
+
+// session_start();
 if ($id !=0) erreur(ERR_IS_CO);
+else {
 
-include("./functions/erreur.php");
-include("./functions/constant.php");
-
-if (!isset($_POST['pseudo']))
+if (!isset($_POST['Login']))
 {
   ?>
    <div class="container-fluid">
@@ -31,9 +30,10 @@ if (!isset($_POST['pseudo']))
     <a href="enregistrement.php"> Pas encore inscrit ?</a>
 	</div>
   <?php
-// $page = htmlspecialchars($_REQUEST['page']);
+// $page = $_SERVER[H]);
 // echo 'Cliquez <a href="'.$page.'">ici</a> pour revenir à la page précédente';
 
+}
 }
 ?>
   </body>

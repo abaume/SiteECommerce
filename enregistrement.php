@@ -6,22 +6,22 @@
 $id=(isset($_SESSION['id']))?(int) $_SESSION['id']:0;
 $pseudo=(isset($_SESSION['pseudo']))?$_SESSION['pseudo']:'';
 
-session_start();
 if ($id !=0) erreur(ERR_IS_CO);
-
-include("./functions/erreur.php");
-include("./functions/constant.php");
 
 $url = $_SERVER["REQUEST_URI"];
 
 if (empty($_POST['pseudo'])) {
     ?>
     <h1>Inscription</h1>
-    <form method="post" action="Traite_Enregistrement.php">
+    <form method="post" action="Traite_Enregistrement.php?url=<?php echo $url?>">
     <fieldset> 
         <legend> Identifiants </legend> 
-        <label for="pseudo"> *Pseudo :</label> <input name="Login" type ="text" id="pseudo"/> <br/>
-        <label for="password"> *Mot de Passe :</label> <input name="Password" type="password" id="password" /> <br/> 
+        <label for="Login"> *Pseudo :</label> <input name="Login" type ="text" id="Login"/> <br/>
+        <label for="Password"> *Mot de Passe :</label> <input name="Password" type="password" id="Password" /> <br/> 
+    </fieldset> 
+    <fieldset> 
+        <legend> Personnel </legend> 
+        <label for="Nom"> Nom :</label> <input name="Nom" type ="text" id="Nom"/> <br/> 
     </fieldset> 
     <fieldset> 
         <legend> Coordonnées </legend> 
@@ -31,6 +31,7 @@ if (empty($_POST['pseudo'])) {
     </fieldset> 
 <p> Les champs précédés d'un * sont obligatoires</p> 
 <p> <input type="submit" value="S'inscrire" /> </p> </form>
+<label> Se souvenir de moi ?</label><input type="checkbox" name ="souvenir"/><br />
 </div>
         <?php
 }

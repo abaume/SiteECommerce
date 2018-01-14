@@ -1,25 +1,11 @@
 <?php
     require('valide.php');
-// Paramètres de connexion
-    $host = 'INFO-SIMPLET';
-    $nomDb = 'Classique_Web';
-    $user = 'ETD';
-    $password = 'ETD';
-    // Chaîne de connexion (Windows)
-    $pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
-    // Connexion PDO
-    $pdo = new PDO($pdodsn, $user, $password);
-    
-    // récupération de l'url de la page
-    $url=$_REQUEST["url"];
+    include('includes/identifiants.php');
 
-    // // Validation des paramètres
-    // if(!isValid($PasswordUser))
-    // 	header("Location: Connexion.php?url=".$url);
-    // if(!isValid($LoginUser))
-    //     header("Location: Connexion.php?url=".$url);
-        
     $message='';
+    $url = $_REQUEST['url'];
+
+
     if (empty($_REQUEST['Login']) || empty($_REQUEST['Password']) ) //Oublie d'un champ
     {
         $message = '<p>une erreur s\'est produite pendant votre identification.
@@ -34,11 +20,15 @@
         // echo "Password data :" . $data['Password'] . " Password request : ". $_REQUEST['Password'];
 
         if ($data['Password'] == $_REQUEST['Password']) {
+            if (isset($_REQUEST['souvenir'])) {
+                $expire = time() + 365*24*3600;
+                setcookie('Login', $_SESSION['Login'], $expire);
+            }
             $_SESSION['Login'] = $data['Login'];
             $message = '<p>Bienvenue '.$data['Login'].', 
 			vous êtes maintenant connecté!</p>
-			<p>Cliquez <a href="./index.php">ici</a> 
-			pour revenir à la page d accueil</p>';  
+			<p>Cliquez <a href="' . $url . '">ici</a> 
+			pour revenir à la page précédente</p>';  
         } else {
             $message = '<p>Une erreur s\'est produite 
             pendant votre identification.<br /> Le mot de passe ou le pseudo 

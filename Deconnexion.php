@@ -3,6 +3,11 @@
 </head> 
 <?php include('/includes/menu.inc.php'); 
 session_start();
+
+if (isset ($_COOKIE['Login'])) {
+    setcookie('Login', '', -1);
+}
+
 session_destroy();
 $titre="Déconnexion";
 
