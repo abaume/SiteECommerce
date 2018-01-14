@@ -18,7 +18,7 @@
 </form>
 
 <?php
-include('includes/identifiants.php');
+include('../includes/identifiants.php');
 
 if (!empty($_GET["n"])) {
 	$lettre = $_GET["n"];

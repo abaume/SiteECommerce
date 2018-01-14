@@ -2,7 +2,6 @@
 <title>deconnexion</title>
 </head> 
 <?php include('/includes/menu.inc.php'); 
-session_start();
 
 if (isset ($_COOKIE['Login'])) {
     setcookie('Login', '', -1);
@@ -11,7 +10,7 @@ if (isset ($_COOKIE['Login'])) {
 session_destroy();
 $titre="Déconnexion";
 
-if ($id==0) erreur(ERR_IS_NOT_CO);
+// if ($id==0) erreur(ERR_IS_NOT_CO);
 
 echo '<p>Vous êtes à présent déconnecté <br />
 Cliquez <a href="'.htmlspecialchars($_SERVER['HTTP_REFERER']).'">ici</a> 
