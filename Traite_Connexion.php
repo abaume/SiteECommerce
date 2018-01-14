@@ -24,6 +24,7 @@
                 $expire = time() + 365*24*3600;
                 setcookie('Login', $_SESSION['Login'], $expire);
             }
+            session_start();
             $_SESSION['Login'] = $data['Login'];
             $message = '<p>Bienvenue '.$data['Login'].', 
 			vous êtes maintenant connecté!</p>
