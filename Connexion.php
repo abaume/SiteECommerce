@@ -22,7 +22,7 @@ if (!isset($_POST['Login']))
   <p>
   <label for="Login"> Pseudo :</label><input name="Login" type="text" id="Login"/>
     <br />
-  <label for="password"> Mot de passe : </label><input name="Password" type="text" id="password"/>
+  <label for="password"> Mot de passe : </label><input name="Password" type="password" id="password"/>
     </p>
     </fieldset>
     <p>

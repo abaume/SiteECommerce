@@ -2,6 +2,7 @@
 include('includes/identifiants.php');
  session_start(); ?>
 
+<nav>
 <ul id="menu_horizontal">
 <li class="bouton_gauche"><a href = "index.php"> Acceuil </a></li>
 <li class="bouton_gauche"><a href = "apropos.php"> A propos </a></li>
@@ -13,6 +14,7 @@ if (empty($_SESSION['Login'])) {
 } else echo "<li class=\"bouton_droite\"><a href = \"Deconnexion.php\"> Deconnexion </a></li>"; ?>
 
 </ul>
+</nav>
 
 <input type="hidden" name="page" value="<?php echo $_SERVER['HTTP_REFERER']; ?>" />
 
@@ -23,9 +25,9 @@ if (isset ($_COOKIE['Login']) && empty($id)) {
 }
 
 if (!empty($_SESSION['Login'])) {
-    echo "Vous êtes connecté en tant que " . $_SESSION['Login'];
+    echo "Vous êtes connecté en tant que " . $_SESSION['Login'] . "<br />";
 } else {
-    echo "Vous êtes connecté en tant que inconnu";
+    echo "Vous n'êtes pas connecté <br />";
 }
 
 ?>
