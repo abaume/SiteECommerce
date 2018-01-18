@@ -58,7 +58,7 @@ if (!empty($_GET["ajout"])) {
 		$login = $_SESSION["Login"];		
 		echo "Ajout...";
 		
-		$requete = "SELECT Code_Abonné From Abonné Where Login = \"" . $login . "\"";		
+		$requete = "SELECT Code_Abonné From Abonné Where Login = '" . $login . "'";		
 		$buffer = $pdo->query($requete);
 		
 		foreach ($pdo->query($requete) as $row) {
@@ -67,7 +67,7 @@ if (!empty($_GET["ajout"])) {
 			  VALUES(\'' . 
 			  $ajout . 
 			  '\', '" . 
-			  $row['$Code_Abonné'] . 
+			  $row[utf8_decode('Code_Abonné')] . 
 			  ")";		  
 			  
 		// SELECT Code_Achat, Code_Enregistrement, Achat.Code_Abonné FROM Achat

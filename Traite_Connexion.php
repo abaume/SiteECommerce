@@ -1,5 +1,5 @@
 <?php
-    require('valide.php');
+    require('/functions/valide.php');
     include('includes/identifiants.php');
     include('/includes/head.inc.php'); ?>
 <title>connexion</title>
