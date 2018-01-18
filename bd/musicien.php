@@ -14,7 +14,17 @@
 
 <p>	
 <?php
-include('../includes/identifiants.php');
+// Paramètres de connexion
+$host = 'INFO-SIMPLET';
+$nomDb = 'Classique_Web';
+$user = 'ETD';
+$password = 'ETD';
+// Chaîne de connexion (Windows)
+$pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
+// // Chaîne de connexion (Linux)
+// $pdodsn = "dblib:version=7.0;charset=UTF-8;host=$host;dbname=$nomDb";
+// Connexion PDO
+$pdo = new PDO($pdodsn, $user, $password);
 
 if (!empty($_GET["code"]) && !empty($_GET["fonction"])) {	
 	$fonction = $_GET["fonction"];

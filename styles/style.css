@@ -44,7 +44,7 @@ body {
     font: 75% georgia, sans-serif;
     line-height: 1.88889;
     color: #555753;
-    background: #fff url(https://www.bypeople.com/wp-content/uploads/2014/05/light-live-background-css.jpg);
+    background-image: url("round.png");
     padding: 10px;
 }
 
@@ -169,7 +169,7 @@ footer a:visited {
 
 .navbar .dropdown-content {
     display: none;
-    position: relative;
+    position: fixed;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -199,6 +199,20 @@ footer a:visited {
 }
 
 .btn-group  input:hover {
+  background: #111;
+  text-decoration: none;
+}
+
+.btn input{
+  background-color: #333;
+  border: 1px solid black;
+  color: white;
+  margin-top: 0;
+  padding: 5px 15px;
+  float: left;
+}
+
+.btn input:hover {
   background: #111;
   text-decoration: none;
 }
