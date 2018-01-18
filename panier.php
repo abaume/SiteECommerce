@@ -24,11 +24,9 @@ if (isset($_SESSION["Login"]))
       echo "<i>Il n'y a rien dans votre panier actuellement</i>";
     } else {
 	foreach ($pdo->query($requete) as $row) {
-    
-    // echo 'Album : <a href="album.php?code="' . $row['Code_Album'] . '">' . $row['Titre'] . "</a><br><br><br>";
-    
-    echo "<h3>". $row['Titre'] . "</h3>" . "<br>" .
-    "<img src=\"/Classique/Home/Pochette/" . $row['Code_Album'] . "\" alt=\"Photo\" width=\"100\">"; 
+        
+    echo '<a href="bd/album.php?code=' . $row['Code_Album'] . '"><h3>'. $row['Titre'] . '</h3></a>' . '<br>' .
+    '<img src="/Classique/Home/Pochette/' . $row['Code_Album'] . '" alt="Photo" width="100">'; 
     }
 	}
 	$pdo = null;

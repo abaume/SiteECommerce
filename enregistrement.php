@@ -22,12 +22,16 @@ if (empty($_POST['pseudo'])) {
     <fieldset> 
         <legend> Personnel </legend> 
         <label for="Nom"> Nom :</label> <input name="Nom" type ="text" id="Nom"/> <br/> 
+        <label for="Prenom"> Prénom :</label> <input name="Prenom" type ="text" id="Prenom"/> <br/> 
     </fieldset> 
     <fieldset> 
         <legend> Coordonnées </legend> 
-        <label for="adresse"> Adresse :</label> <input name="adresse" type ="text" id="adresse"/> <br/>
-        <label for="mail"> Adresse mail :</label> <input name="mail" type ="text" id="mail"/> <br/>
-        <label for="telephone"> Téléphone :</label> <input name="telephone" id="telephone" type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"/> <br/> 
+        <label for="Adresse"> Adresse :</label> <input name="Adresse" type ="text" id="Adresse"/> <br/>
+        <label for="Ville"> Ville :</label> <input name="Ville" type ="text" id="Ville"/> <br/>
+        <label for="CodePostal"> Code Postal :</label> <input name="CodePostal" type ="text" id="CodePostal"/> <br/>
+        <label for="Pays"> Pays :</label> <input name="Pays" type ="text" id="Pays"/> <br/>
+        <label for="Mail"> Adresse mail :</label> <input name="Mail" type ="text" id="Mail"/> <br/>
+       
     </fieldset> 
 <p> Les champs précédés d'un * sont obligatoires</p> 
 <p> <input type="submit" value="S'inscrire" /> </p> </form>

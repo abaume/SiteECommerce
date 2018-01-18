@@ -30,9 +30,6 @@ if (!isset($_POST['Login']))
     <a href="enregistrement.php"> Pas encore inscrit ?</a>
 	</div>
   <?php
-// $page = $_SERVER[H]);
-// echo 'Cliquez <a href="'.$page.'">ici</a> pour revenir à la page précédente';
-
 }
 }
 ?>
