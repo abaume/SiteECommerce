@@ -10,7 +10,8 @@
 	</div>
 	<div class="container-fluid">
     <h1>Difficultés rencontrées</h1>
-    <p>oulala</p>
+    <p>Le site prévoyait d'être en symfony mais des erreurs répétées nous ont contraints à ne le développer 
+    qu'en php pur. </p>
 	</div>
   </body>
 </html>

@@ -31,12 +31,12 @@ if (empty($_SESSION['Login'])) {
 	Vous devez remplir tous les champs</p>
 	<p>Cliquez <a href="./connexion.php">ici</a> pour revenir</p>';
     } else {
-       $log = $_REQUEST['Login'];
-       $rep = $pdo->query("SELECT * FROM Abonné WHERE Login= '$log' ") or die(print_r($pdo->errorInfo()));
-       $data=$rep->fetch();
 
-        // echo "Login data :" . $data['Login'] . " Login request : ". $_REQUEST['Login'];
-        // echo "Password data :" . $data['Password'] . " Password request : ". $_REQUEST['Password'];
+    $login = $_REQUEST['Login'];
+    $rep = $pdo->prepare('SELECT * FROM Abonné WHERE Login= :log');
+    $rep->execute(array(
+        'log' => $login));
+    $data = $rep->fetch();
 
         if ($data['Password'] == $_REQUEST['Password']) {
             if (isset($_REQUEST['souvenir'])) {
@@ -52,10 +52,8 @@ if (empty($_SESSION['Login'])) {
         } else {
             $message = '<p>Une erreur s\'est produite 
             pendant votre identification.<br /> Le mot de passe ou le pseudo 
-                entré n\'est pas correcte.</p><p>Cliquez <a href="./connexion.php">ici</a> 
-            pour revenir à la page précédente
-            <br /><br />Cliquez <a href="./index.php">ici</a> 
-            pour revenir à la page d accueil</p>';
+                entré n\'est pas correct.</p><p>Cliquez <a href="'. $url . '">ici</a> 
+            pour revenir à la page précédente';
         }
         $rep->CloseCursor();
     }

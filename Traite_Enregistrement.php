@@ -5,6 +5,7 @@
     $PasswordUser = $_REQUEST['Password'];
     $LoginUser =$_REQUEST['Login'];
     $NomUser = $_REQUEST['Nom'];
+    $EmailUser = $_REQUEST['mail'];
     
     $url= $_REQUEST['url'];
 
@@ -19,6 +20,10 @@
     else {
         $rep=$pdo->query("SELECT COUNT(*) AS nb FROM Abonné WHERE Login = '$LoginUser'");
         $pseudo_free = ($rep->fetchColumn()==0)?1:0;
+        if (!empty($EmailUser)) {
+            $repmail= $pdo->query("SELECT COUNT(*) AS nb FROM Abonné WHERE Email = '$EmailUser'");
+            $mail_free = ($repmail->fetchColumn()==0)?1:0;
+        }
     
         if(!$pseudo_free) {
             $message = $pseudo_erreur = "Votre pseudo est déjà utilisé par un membre";
