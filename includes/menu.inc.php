@@ -1,6 +1,8 @@
 <?php 
 include('includes/identifiants.php');
  session_start(); ?>
+ 
+<?php include('includes/membre_connecte.inc.php'); ?>
 
 <nav>
 <ul id="menu_horizontal">
@@ -15,5 +17,3 @@ if (empty($_SESSION['Login'])) {
 
 </ul>
 </nav>
-
-<?php include('includes/membre_connecte.inc.php'); ?>
