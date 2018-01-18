@@ -22,7 +22,7 @@
 	<input type="submit" value="Classique" name="genre" class="bt"/>
 	<input type="submit" value="Romantique" name="genre" class="bt"/>
 	<input type="submit" value="Moderne" name="genre" class="bt"/>
-	<input type="submit" value="Comptemporain" name="genre" class="bt"/>
+	<input type="submit" value="Contemporain" name="genre" class="bt"/>
 	<input type="submit" value="Opera" name="genre" class="bt"/>
 	<input type="submit" value="Musique Sacrée" name="genre" class="bt"/>
 	<input type="submit" value="Oratorio" name="genre" class="bt"/>
@@ -48,11 +48,14 @@ $pdo = new PDO($pdodsn, $user, $password);
 if (!empty($_GET["genre"])) {
 	$genre = $_GET["genre"];
 	
-	$requete = "Select Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien from Musicien Inner Join Genre ON Musicien.Code_Genre = Genre.Code_Genre Where Genre.Libellé_Abrégé Like '%$genre%' Group By Nom_Musicien, Prénom_Musicien, Musicien.Code_Musicien";
+	$requete = "Select Distinct Titre_Album, Album.Code_Album from Album
+	Inner Join Genre On Genre.Code_Genre = Album.Code_Genre
+		Where Genre.Libellé_Abrégé like '%$genre%'";
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Nom : ' . "<a href=\"musicien.php?fonction=interprete&code=" . $row['Code_Musicien']. "\">" . $row['Nom_Musicien']. "</a><br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br>" . "<br>". "<br>";
+		echo "<p><a href=\"album.php?code=" . $row['Code_Album'] . "\">" . $row['Titre_Album'] . "</a></h4>" .
+		"<br><img src=\"/Classique/Home/Pochette/" . $row['Code_Album'] . "\" alt=\"Photo\" width=\"100\"></p>";
 	}
 	$pdo = null;
 }

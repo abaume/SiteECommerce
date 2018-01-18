@@ -39,7 +39,7 @@ if (!empty($_GET["n"])) {
 	  $buffer = $pdo->query($requete);
 
 	foreach ($pdo->query($requete) as $row) {
-		echo 'Noma : ' . "<a href=\"musicien.php?fonction=interprete&code=" . $row['Code_Musicien']. "\">" . $row['Nom_Musicien']. "</a><br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br><br><br>";
+		echo 'Nom : ' . "<a href=\"musicien.php?fonction=interprete&code=" . $row['Code_Musicien']. "\">" . $row['Nom_Musicien']. "</a><br>". 'Prenom : ' . $row[utf8_decode('Prénom_Musicien')]. "<br>". 'Code : '. $row['Code_Musicien']. "<br><br><br>";
 	}
 	$pdo = null;
 
