@@ -10,7 +10,7 @@
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
 <div style="margin-left:25%">
-<h3>Album - détails</h3> 
+<h3>Album - détailsEnd</h3> 
 
 <p>	
 <?php
@@ -55,25 +55,32 @@ if (!empty($_GET["code"])) {
 	}
 }
 if (!empty($_GET["ajout"])) {
-		$ajout = $_GET["ajout"];
+		$codeAlbum = $_GET["ajout"];
 		$login = $_SESSION["Login"];		
 		echo "Ajout...";
 		
+		$requete = "SELECT Enregistrement.Code_Morceau from Album
+		Inner Join Disque On Disque.Code_Album = Album.Code_Album
+		Inner Join Composition_Disque On Disque.Code_Disque = Composition_Disque.Code_Disque 
+		Inner Join Enregistrement On Enregistrement.Code_Morceau = Composition_Disque.Code_Morceau
+		Where Album.Code_Album Like '$codeAlbum'";
+		
+		$buffer = $pdo->query($requete);
+		$donne = $buffer->fetch();
+	
+		$codeEnregistrement = $donne['Code_Morceau'];	
+		
 		$requete = "SELECT Code_Abonné From Abonné Where Login Like '" . $login . "'";		
 		$buffer = $pdo->query($requete);
+		$donne = $buffer->fetch();
+	
+		$codeAbonne = $donne[utf8_decode('Code_Abonné')];
 		
-		foreach ($pdo->query($requete) as $row) {
-			
-			$requete2 = "INSERT INTO Achat(Code_Enregistrement, Code_Abonné) 
-			  VALUES(\'' . 
-			  $ajout . 
-			  '\', '" . 
-			  $row[utf8_decode('Code_Abonné')] . 
-			  ")";
+		$requete = "INSERT INTO Achat(Code_Enregistrement, Code_Abonné) 
+			VALUES(" . $codeEnregistrement . "," . $codeAbonne . ")";
+		$buffer = $pdo->query($requete);
 		
-		  $buffer = $pdo->query($requete2);		
-		  echo "Ajouté au panier !";
-		}
+		echo "Ajouté au panier !" . $codeEnregistrement . " abo : " . $codeAbonne;
 }
 		$pdo = null;
 ?>
