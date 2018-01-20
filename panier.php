@@ -35,7 +35,7 @@ if (isset($_SESSION["Login"]))
     echo '<a href="bd/album.php?code=' . $row['Code_Album'] . '">
     <h3>'. $row['Titre'] . '</h3>
     </a> <br>  <img src="/Classique/Home/Pochette/' . $row['Code_Album'] . '" alt="Photo" width="100"> x ' . $nb['Nombre'] . '<form method="get"> 
-    <span class="btn"><input type="submit" name="supprimer" value="' . $row['Code_Album'] .'"/></span></form>'; 
+    <span class="btn"><input type="hidden" name="supprimer" value="' . $row['Code_Album'] .'"/><input type="submit" value="Supprimer" /></span></form>'; 
     
     
     if(!empty($_REQUEST['supprimer'])) {
@@ -68,7 +68,6 @@ if (isset($_SESSION["Login"]))
     ?> <form method="get">
     <span class="btn"><input type="submit" name="vider" value="vider panier" /></span></form>
 
-<!-- <input type="hidden" name="fieldsCount" value="<?php echo $fields+1 ?>" /> -->
     <?php
 	}
 	$pdo = null;
