@@ -16,10 +16,15 @@
 <?php
 include("../includes/identifiants.php");
 
+require('AmazonECS.class.php'); //nom de la classe téléchargée
+    const Aws_ID = "AKIAIOYVUR3AD4CB2ECA"; // Identifiant
+    const Aws_SECRET = "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"; //Secret
+    const associateTag="lapirom-21"; // AssociateTag
+
 if (!empty($_GET["code"])) {
 	$code = $_GET["code"];
 	
-	$requete = "Select Album.Titre_Album, Album.Code_Album From Album Where Album.Code_Album like '$code'";
+	$requete = "Select Album.Titre_Album, Album.Code_Album, Album.ASIN From Album Where Album.Code_Album like '$code'";
 	$buffer = $pdo->query($requete);
 	$donne = $buffer->fetch();
 	echo 
@@ -31,29 +36,13 @@ if (!empty($_GET["code"])) {
 			"<span class=\"btn\">
 			<input type=\"hidden\" value=\"" . $code . "\" name=\"ajout\">" .
 			"<input type=\"submit\" value=\"Ajouter\" /> . </span></form></h3>";
-		}		
-	echo "<h3> Morceaux </h3>";
+		}
 	
-    $requete = "Select Distinct Disque.Code_Disque, Album.ASIN, Enregistrement.Titre, Enregistrement.Durée, Enregistrement.Code_Morceau from Album
-	Inner Join Disque On Disque.Code_Album = Album.Code_Album
-	Inner Join Composition_Disque On Disque.Code_Disque = Composition_Disque.Code_Disque 
-	Inner Join Enregistrement On Enregistrement.Code_Morceau = Composition_Disque.Code_Morceau
-	Where Album.Code_Album like '$code'";	
-	$buffer = $pdo->query($requete);	
-	foreach ($pdo->query($requete) as $row) {
-		echo 
-		"<h4>". $row['Titre'] . "</h4>" .
-		"<p><audio src=\"/Classique/Home/Extrait/" . $row['Code_Morceau'] . "\" controls></audio>" .
-		"(" . $row[utf8_decode('Durée')] . ")" . "</p>";
-		require('AmazonECS.class.php'); //nom de la classe téléchargée
-    const Aws_ID = "AKIAIOYVUR3AD4CB2ECA"; // Identifiant
-    const Aws_SECRET = "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"; //Secret
-    const associateTag="lapirom-21"; // AssociateTag
     $client = new AmazonECS(Aws_ID, Aws_SECRET, 'FR', associateTag);
     $category = 'Musique';
-    $title = $row['ASIN'];
+    $title = $donne['ASIN'];
     $mode = 'ASIN';
-	
+		
 	$response;
 		$array;
 		$review;
@@ -67,6 +56,7 @@ if (!empty($_GET["code"])) {
 		$date;	
     if($mode == 'ASIN')
     {
+		echo "<h3>Amazon</h3>";
 		$response = $client->responseGroup('Large')->lookup($title);
 		$array = $client->returnData($response);
 		if(isset($array["Items"]["Item"]["EditorialReviews"]["EditorialReview"]["Content"])){
@@ -87,7 +77,7 @@ if (!empty($_GET["code"])) {
 		if(isset($array["Items"]["Item"]["ItemAttributes"]["Brand"])){
 		$marque = $array["Items"]["Item"]["ItemAttributes"]["Brand"];
 		}
-		if(!isset($array["Items"]["Item"]["ItemAttributes"]["Label"])){
+		if(!empty($array["Items"]["Item"]["ItemAttributes"]["Label"])){
 		$label = $array["Items"]["Item"]["ItemAttributes"]["Label"];
 		}
 		if(isset($array["Items"]["Item"]["ItemAttributes"]["ReleaseDate"])){
@@ -124,7 +114,7 @@ if (!empty($_GET["code"])) {
 		if(!empty($date)){
 			echo $date . "<br>";
 			};
-		if(sizeof($morceaux)>0){
+		if(!empty($morceaux)){
 			echo "<h3>Morceaux :</h3><ul>";
 			for($i = 0; $i<sizeof($morceaux) ; $i++){
 				echo "<li>" . $array["Items"]["Item"]["Tracks"]["Disc"]["Track"][$i]["_"] . "</li>";
@@ -135,6 +125,20 @@ if (!empty($_GET["code"])) {
 			echo $review . "<br>";
 			};
     }
+	
+	echo "<h3> Morceaux </h3>";
+	
+    $requete = "Select Distinct Disque.Code_Disque, Album.ASIN, Enregistrement.Titre, Enregistrement.Durée, Enregistrement.Code_Morceau from Album
+	Inner Join Disque On Disque.Code_Album = Album.Code_Album
+	Inner Join Composition_Disque On Disque.Code_Disque = Composition_Disque.Code_Disque 
+	Inner Join Enregistrement On Enregistrement.Code_Morceau = Composition_Disque.Code_Morceau
+	Where Album.Code_Album like '$code'";	
+	$buffer = $pdo->query($requete);	
+	foreach ($pdo->query($requete) as $row) {
+		echo 
+		"<h4>". $row['Titre'] . "</h4>" .
+		"<p><audio src=\"/Classique/Home/Extrait/" . $row['Code_Morceau'] . "\" controls></audio>" .
+		"(" . $row[utf8_decode('Durée')] . ")" . "</p>";
 	}
 }
 
