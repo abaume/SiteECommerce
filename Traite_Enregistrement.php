@@ -73,7 +73,7 @@
                     . $CodePostalUser . '\', \'' . $VilleUser . '\','  . $PaysUser['Code_Pays'] . ', \'' . $EmailUser . '\')';
             $pdo->query($req);
             $_SESSION['Login'] = $LoginUser;
-            $message = 'Vous avez bien été enregistré, bravo ! Pour vous connecter, cliquez <a href="connexion.php">ici</a> ';
+            $message = '<a href="connexion.php">Vous avez bien été enregistré, bravo ! Pour vous connecter, cliquez ici</a> ';
         }       
     
     echo $message;

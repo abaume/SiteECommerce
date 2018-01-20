@@ -31,7 +31,6 @@ if (empty($_POST['pseudo'])) {
         <label for="CodePostal"> Code Postal :</label> <input name="CodePostal" type ="text" id="CodePostal"/> <br/>
         <label for="Pays"> Pays :</label> <input name="Pays" type ="text" id="Pays"/> <br/>
         <label for="Mail"> Adresse mail :</label> <input name="Mail" type ="text" id="Mail"/> <br/>
-       
     </fieldset> 
 <p> Les champs précédés d'un * sont obligatoires</p> 
 <p> <input type="submit" value="S'inscrire" /> </p> </form>

@@ -57,7 +57,6 @@ if (!empty($_GET["code"])) {
 if (!empty($_GET["ajout"])) {
 		$codeAlbum = $_GET["ajout"];
 		$login = $_SESSION["Login"];		
-		echo "Ajout...";
 		
 		$requete = "SELECT Enregistrement.Code_Morceau from Album
 		Inner Join Disque On Disque.Code_Album = Album.Code_Album
@@ -79,8 +78,6 @@ if (!empty($_GET["ajout"])) {
 		$requete = "INSERT INTO Achat(Code_Enregistrement, Code_Abonné) 
 			VALUES(" . $codeEnregistrement . "," . $codeAbonne . ")";
 		$buffer = $pdo->query($requete);
-		
-		echo "Ajouté au panier !" . $codeEnregistrement . " abo : " . $codeAbonne;
 }
 		$pdo = null;
 ?>

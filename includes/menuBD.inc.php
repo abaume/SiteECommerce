@@ -1,6 +1,8 @@
 <?php 
  session_start(); ?>
 
+<?php include('../includes/membre_connecte.inc.php'); ?>
+
 <ul id="menu_horizontal">
 <li class="bouton_gauche"><a href = "../index.php"> Acceuil </a></li>
 <li class="bouton_gauche"><a href = "../apropos.php"> A propos </a></li>
@@ -13,5 +15,3 @@ if (empty($_SESSION['Login'])) {
 
 </ul>
 </nav>
-
-<?php include('../includes/membre_connecte.inc.php'); ?>
