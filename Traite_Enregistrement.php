@@ -1,44 +1,23 @@
 <?php
     require('valide.php');
-    require('functions/erreur.php');
-    require('functions/constant.php');
     include('includes/identifiants.php');
 
-    $message = "";
-
-    if (!empty($_REQUEST['Password'])) {
-        $PasswordUser = $_REQUEST['Password'];
-    } else erreur(ERR_PASSWORD_NULL);
-    if (!empty($_REQUEST['Login'])) {
-        $LoginUser =$_REQUEST['Login'];
-    }  else erreur(ERR_PSEUDO_NULL);
-    if (!empty($_REQUEST['Nom'])) {
+    $PasswordUser = $_REQUEST['Password'];
+    $LoginUser =$_REQUEST['Login'];
     $NomUser = $_REQUEST['Nom'];
-    } else $NomUser = "";
-    if (!empty($_REQUEST['Prenom'])) {
     $PrenomUser = $_REQUEST['Prenom'];
-    } else $PrenomUser = "";
-    if (!empty($_REQUEST['Adresse'])) {
     $AdresseUser = $_REQUEST['Adresse'];
-    } else $AdresseUser = "";
-    if (!empty($_REQUEST['Ville'])) {
     $VilleUser = $_REQUEST['Ville'];
-    } else $VilleUser = "";
-    if (!empty($_REQUEST['CodePostal'])) {
     $CodePostalUser = $_REQUEST['CodePostal'];
-    } else $CodePostalUser = "";
-    if (!empty($_REQUEST['Pays'])) {
     $NomPaysUser = $_REQUEST['Pays'];
-    } else $NomPaysUser = "";
-    if (!empty($_REQUEST['Mail'])) {
     $EmailUser = $_REQUEST['Mail'];
-    } else $NomPaysUser = "";
     
     $url= $_REQUEST['url'];
-    $mail_free = 1;
-    $pseudo_free = 1;
-    $i = 0;
 
+    $i = 0;
+    $pseudo_erreur = NULL;
+    $mdp_erreur = NULL;
+    $message = "";
 
     if (empty($PasswordUser) || empty($LoginUser)) {
         $message = "Veuillez renseigner un Pseudo ET un mot de passe s'il vous plait";
@@ -57,7 +36,7 @@
         if(!$pseudo_free) {
             $message = "Votre pseudo est déjà utilisé par un membre ";
             $i++;
-        }
+        } 
 
         if(!$mail_free) { 
             $message += "Votre adresse mail est déjà utilisée par un membre";
@@ -67,13 +46,14 @@
             
             $test = $pdo->query("select Pays.Code_Pays from Pays Where Nom_Pays = '" . $NomPaysUser ."'; ");
             $PaysUser = $test->fetch();
+            echo "pays : " . $PaysUser['Code_Pays'];
 
             $req = 'INSERT INTO Abonné(Nom_Abonné, Prénom_Abonné, Login, Password, Adresse, Code_Postal, Ville, Code_Pays, Email) 
                     VALUES(\'' . $NomUser . '\', \'' .$PrenomUser. '\', \'' . $LoginUser . '\', \'' . $PasswordUser . '\', \'' . $AdresseUser . '\', \'' 
                     . $CodePostalUser . '\', \'' . $VilleUser . '\','  . $PaysUser['Code_Pays'] . ', \'' . $EmailUser . '\')';
             $pdo->query($req);
             $_SESSION['Login'] = $LoginUser;
-            $message = 'Vous avez bien été enregistré, bravo ! Pour vous connecter, cliquez <a href="connexion.php">ici</a> ';
+            $message = 'Vous avez bien été enregistré, bravo ! Pour vous connecter, cliquez <a href="' . $url . '">ici</a> ';
         }       
     
     echo $message;
