@@ -34,7 +34,7 @@ if (isset($_SESSION["Login"]))
 
     echo '<a href="bd/album.php?code=' . $row['Code_Album'] . '">
     <h3>'. $row['Titre'] . '</h3>
-    </a> <br>  <img src="/Classique/Home/Pochette/' . $row['Code_Album'] . '" alt="Photo" width="100"> x ' . $nb['Nombre'] . '<form method="get"> 
+    </a> <br>  <form method="get"><img src="/Classique/Home/Pochette/' . $row['Code_Album'] . '" alt="Photo" width="100"> x ' . $nb['Nombre'] . ' 
     <span class="btn"><input type="hidden" name="supprimer" value="' . $row['Code_Album'] .'"/><input type="submit" value="Supprimer" /></span></form>'; 
     
     
