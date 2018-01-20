@@ -14,12 +14,34 @@
     $category = 'Musique';
     $title = "B00000I433";
     $mode = 'ASIN';
+	
+	$response;
+		$array;
+		$review;
+		$price;
+		$url;
+		$image;
+		$artist;
+		$format;
+		$marque;
+		$label;
+		$date;	
     if($mode == 'ASIN')
     {
-        $response = $client->responseGroup('Large')->lookup($title);
-		$des = $client->returnData($response);
-		$descr = $des["Items"]["Item"]["EditorialReviews"]["EditorialReview"]["Content"];
-		echo $descr . "<br>";
+		$response = $client->responseGroup('Large')->lookup($title);
+		$array = $client->returnData($response);
+		$review = $array["Items"]["Item"]["EditorialReviews"]["EditorialReview"]["Content"];
+		$price = $array["Items"]["Item"]["OfferSummary"]["LowestNewPrice"]["FormattedPrice"];
+		$url = $array["Items"]["Item"]["DetailPageURL"];
+		$image = $array["Items"]["Item"]["MediumImage"]["URL"];
+		$artist = $array["Items"]["Item"]["ItemAttributes"]["Artist"];
+		$format  = $array["Items"]["Item"]["ItemAttributes"]["Format"];
+		$marque  = $array["Items"]["Item"]["ItemAttributes"]["Brand"];
+		$label  = $array["Items"]["Item"]["ItemAttributes"]["Label"];
+		$date  = $array["Items"]["Item"]["ItemAttributes"]["ReleaseDate"];
+		echo $review . "<br>" . $price . "<br>" . $url . "<br>" . $image .
+		"<br>" . $artist . "<br>" . $format . "<br>" . $marque . "<br>" .
+		$label . "<br>" . $date . "<br>";		
         //$items = $response["Items"];
         //$it = $items["Item"];
         //displayItem($it);

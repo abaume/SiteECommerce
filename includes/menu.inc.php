@@ -1,6 +1,6 @@
 <?php 
-//include('includes/identifiants.php');
-// session_start(); ?>
+ //include('includes/identifiants.php');
+ session_start(); ?>
 
 <nav>
 <ul id="menu_horizontal">

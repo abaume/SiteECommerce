@@ -1,7 +1,7 @@
 <div class="navbar">
       <ul>
         <li>
-          <a href = "baseIndex.php">Acceuil</a>
+          <a href = "baseIndex.php">Accueil</a>
         </li>
         <li class="dropdown">
           <a href="#listeAlpha" class="dropbtn">Liste alphabétique</a>
