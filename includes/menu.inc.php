@@ -1,6 +1,6 @@
 <?php 
 
- include('includes/membre_connecte.inc.php'); 
+ include('/membre_connecte.inc.php'); 
  session_start(); ?>
 
 <nav>
