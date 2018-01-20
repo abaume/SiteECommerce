@@ -46,7 +46,7 @@ if (!empty($_GET["code"])) {
 		$label;
 		$date;	
     
-		echo "<div class=\"container amazon\"><div class=\"row\"><div class=\"col-sm-6\"><h3>Amazon</h3>";
+		echo "<div class=\"container\"><div class=\"row\"><div class=\"col-sm-6\"><div class=\"amazon\"><h3>Amazon</h3>";
 		$response = $client->responseGroup('Large')->lookup($title);
 		$array = $client->returnData($response);
 		if(isset($array["Items"]["Item"]["EditorialReviews"]["EditorialReview"]["Content"])){
@@ -114,7 +114,7 @@ if (!empty($_GET["code"])) {
 		if(!empty($review)){
 			echo $review . "<br>";
 			};
-		echo "</div>";
+		echo "</div></div>";
     }
 	
 	echo 
@@ -145,7 +145,7 @@ if (!empty($_GET["code"])) {
 	echo "</div></div></div>";
 }
 
-if (!empty($_GET["ajout"])) {
+if (!empty($_GET["ajout"]) && !empty($_SESSION["Login"])) {
 		$codeAlbum = $_GET["ajout"];
 		$login = $_SESSION["Login"];
 		

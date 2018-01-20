@@ -227,6 +227,8 @@ fieldset {
 }
 
 .amazon {
+	padding-top: 5px;
+	padding-left: 8px;
 	background-color: #f1f1f1;
-	color : red;
+	border: 1px solid #ff9900;
 }
