@@ -1,7 +1,7 @@
 <?php 
-
+session_start();
  include('/membre_connecte.inc.php'); 
- session_start(); ?>
+  ?>
 
 <nav>
 <ul id="menu_horizontal">
