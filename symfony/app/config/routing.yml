@@ -1,7 +1,0 @@
-e_commerce_connexion:
-    resource: "@ECommerceConnexionBundle/Resources/config/routing.yml"
-    prefix:   /
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation

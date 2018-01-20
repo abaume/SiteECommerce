@@ -30,24 +30,73 @@
     {
 		$response = $client->responseGroup('Large')->lookup($title);
 		$array = $client->returnData($response);
+		if(isset($array["Items"]["Item"]["EditorialReviews"]["EditorialReview"]["Content"])){
 		$review = $array["Items"]["Item"]["EditorialReviews"]["EditorialReview"]["Content"];
+		}
+		if(isset($array["Items"]["Item"]["OfferSummary"]["LowestNewPrice"]["FormattedPrice"])){
 		$price = $array["Items"]["Item"]["OfferSummary"]["LowestNewPrice"]["FormattedPrice"];
+		}
+		if(isset($array["Items"]["Item"]["DetailPageURL"])){
 		$url = $array["Items"]["Item"]["DetailPageURL"];
+		}
+		if(isset($array["Items"]["Item"]["MediumImage"]["URL"])){
 		$image = $array["Items"]["Item"]["MediumImage"]["URL"];
+		}
+		if(isset($array["Items"]["Item"]["ItemAttributes"]["Artist"])){
 		$artist = $array["Items"]["Item"]["ItemAttributes"]["Artist"];
-		$format  = $array["Items"]["Item"]["ItemAttributes"]["Format"];
-		$marque  = $array["Items"]["Item"]["ItemAttributes"]["Brand"];
-		$label  = $array["Items"]["Item"]["ItemAttributes"]["Label"];
-		$date  = $array["Items"]["Item"]["ItemAttributes"]["ReleaseDate"];
-		echo $review . "<br>" . $price . "<br>" . $url . "<br>" . $image .
-		"<br>" . $artist . "<br>" . $format . "<br>" . $marque . "<br>" .
-		$label . "<br>" . $date . "<br>";		
-        //$items = $response["Items"];
-        //$it = $items["Item"];
-        //displayItem($it);
+		}
+		if(isset($array["Items"]["Item"]["ItemAttributes"]["Brand"])){
+		$marque = $array["Items"]["Item"]["ItemAttributes"]["Brand"];
+		}
+		if(!isset($array["Items"]["Item"]["ItemAttributes"]["Label"])){
+		$label = $array["Items"]["Item"]["ItemAttributes"]["Label"];
+		}
+		if(isset($array["Items"]["Item"]["ItemAttributes"]["ReleaseDate"])){
+		$date = $array["Items"]["Item"]["ItemAttributes"]["ReleaseDate"];
+		}
+		if(isset($array["Items"]["Item"]["ItemAttributes"]["Title"])){
+		$titre = $array["Items"]["Item"]["ItemAttributes"]["Title"];
+		}
+		if(isset($array["Items"]["Item"]["Tracks"]["Disc"]["Track"])){
+		$morceaux = $array["Items"]["Item"]["Tracks"]["Disc"]["Track"];
+		}
+		
+		if(!empty($titre)){
+			echo "<h3>" . $titre . "</h3>";
+			};
+		if(!empty($artist)){
+			echo $artist . "<br>";
+			};	
+		if(!empty($price)){
+			echo "<h4>" . $price;
+			};
+		if(!empty($url)){
+			echo "<a href=" . $url . "\" target=\"_blank\"> Lien vers Amazon </a></h3>";
+			};
+		if(!empty($image)){
+			echo "<img src=\"" . $image . "\"><br>";
+			};				
+		if(!empty($label)){
+			echo $label . "  ";
+			};
+		if(!empty($marque)){
+			echo $marque . "  ";
+			};
+		if(!empty($date)){
+			echo $date . "<br>";
+			};
+		if(sizeof($morceaux)>0){
+			echo "<h3>Morceaux :</h3><ul>";
+			for($i = 0; $i<sizeof($morceaux) ; $i++){
+				echo "<li>" . $array["Items"]["Item"]["Tracks"]["Disc"]["Track"][$i]["_"] . "</li>";
+			}
+			echo "</ul>";
+		};		
+		if(!empty($review)){
+			echo $review . "<br>";
+			};
     }
 			  
-	//print_r($response);
 	?>
 	</p>
 	</div>

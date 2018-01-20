@@ -1,3 +1,0 @@
-e_commerce_connexion_homepage:
-    path:     /
-    defaults: { _controller: ECommerceConnexionBundle:Default:index }
