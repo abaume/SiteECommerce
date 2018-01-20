@@ -1,7 +1,7 @@
 <?php 
  session_start(); ?>
 
-<?php include('../includes/membre_connecte.inc.php'); ?>
+<?php include('/membre_connecte.inc.php'); ?>
 
 <ul id="menu_horizontal">
 <li class="bouton_gauche"><a href = "../index.php"> Accueil </a></li>

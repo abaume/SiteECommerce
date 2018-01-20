@@ -1,5 +1,6 @@
 <?php 
- //include('includes/identifiants.php');
+
+ include('/membre_connecte.inc.php'); 
  session_start(); ?>
 
 <nav>
@@ -15,5 +16,3 @@ if (empty($_SESSION['Login'])) {
 
 </ul>
 </nav>
-
-<?php include('includes/membre_connecte.inc.php'); ?>
