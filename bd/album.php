@@ -10,7 +10,7 @@
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
 <div style="margin-left:25%">
-<h3>Album - détails</h3> 
+<h2>Album - détails</h2> 
 
 <p>	
 <?php
@@ -27,22 +27,13 @@ if (!empty($_GET["code"])) {
 	$requete = "Select Album.Titre_Album, Album.Code_Album, Album.ASIN From Album Where Album.Code_Album like '$code'";
 	$buffer = $pdo->query($requete);
 	$donne = $buffer->fetch();
-	echo 
-		"<h3><form method=\"get\"><img src=\"/Classique/Home/Pochette/" . 
-		$donne['Code_Album'] . "\" alt=\"Photo\" width=\"100\">  " . 
-		$donne['Titre_Album'];
-		if (!empty($_SESSION["Login"])){
-			echo
-			"<span class=\"btn\">
-			<input type=\"hidden\" value=\"" . $code . "\" name=\"ajout\">" .
-			"<input type=\"submit\" value=\"Ajouter\" /> . </span></form></h3>";
-		}
-	
+		
     $client = new AmazonECS(Aws_ID, Aws_SECRET, 'FR', associateTag);
     $category = 'Musique';
     $title = $donne['ASIN'];
     $mode = 'ASIN';
-		
+	if($mode == 'ASIN')
+    {		
 	$response;
 		$array;
 		$review;
@@ -54,9 +45,8 @@ if (!empty($_GET["code"])) {
 		$marque;
 		$label;
 		$date;	
-    if($mode == 'ASIN')
-    {
-		echo "<h3>Amazon</h3>";
+    
+		echo "<div class=\"container amazon\"><div class=\"row\"><div class=\"col-sm-6\"><h3>Amazon</h3>";
 		$response = $client->responseGroup('Large')->lookup($title);
 		$array = $client->returnData($response);
 		if(isset($array["Items"]["Item"]["EditorialReviews"]["EditorialReview"]["Content"])){
@@ -124,7 +114,19 @@ if (!empty($_GET["code"])) {
 		if(!empty($review)){
 			echo $review . "<br>";
 			};
+		echo "</div>";
     }
+	
+	echo 
+		"<div class=\"col-sm-6\"><h3>BD</h3><h3><form method=\"get\"><img src=\"/Classique/Home/Pochette/" . 
+		$donne['Code_Album'] . "\" alt=\"Photo\" width=\"100\">  " . 
+		$donne['Titre_Album'];
+		if (!empty($_SESSION["Login"])){
+			echo
+			"<span class=\"btn\">
+			<input type=\"hidden\" value=\"" . $code . "\" name=\"ajout\">" .
+			"<input type=\"submit\" value=\"Ajouter\" /> . </span></form></h3>";
+		}
 	
 	echo "<h3> Morceaux </h3>";
 	
@@ -140,6 +142,7 @@ if (!empty($_GET["code"])) {
 		"<p><audio src=\"/Classique/Home/Extrait/" . $row['Code_Morceau'] . "\" controls></audio>" .
 		"(" . $row[utf8_decode('Durée')] . ")" . "</p>";
 	}
+	echo "</div></div></div>";
 }
 
 if (!empty($_GET["ajout"])) {

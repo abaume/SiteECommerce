@@ -225,3 +225,8 @@ fieldset {
     margin: auto;
     text-align: center;
 }
+
+.amazon {
+	background-color: #f1f1f1;
+	color : red;
+}
