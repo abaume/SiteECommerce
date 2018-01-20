@@ -5,19 +5,19 @@
         </li>
         <li class="dropdown">
           <a href="#listeAlpha" class="dropbtn">Liste alphabétique</a>
-		  <div class="dropdown-content">
-			  <a href="compositeur.php">Compositeurs</a>
-			  <a href="interprete.php">Interprètes</a>
-			  <a href="chef.php">Chefs d'orchestre</a>
-			  <a href="orchestre.php">Orchestres</a>
-			</div>
+          <ul class="dropdown-content">
+          <li><a href="compositeur.php">Compositeurs</a></li>
+          <li><a href="interprete.php">Interprètes</a></li>
+          <li><a href="chef.php">Chefs d'orchestre</a></li>
+          <li><a href="orchestre.php">Orchestres</a></li>
+          </ul>
         </li>
         <li class="dropdown">
           <a href="#epoque" class="dropbtn">Par époques</a>
-		  <div class="dropdown-content">
-			  <a href="compositeurEpoque.php">Compositeurs</a>
-			  <a href="interpreteEpoque.php">Interprètes</a>
-			</div>
+          <ul class="dropdown-content">
+			        <li><a href="compositeurEpoque.php">Compositeurs</a></li>
+			        <li><a href="interpreteEpoque.php">Interprètes</a></li>
+          </ul>
         </li>
         <li>
           <a href="instrument.php">Instruments</a>
