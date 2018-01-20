@@ -7,10 +7,10 @@ if (isset($_SESSION["Login"]))
 {
   ?>
 	<div class="container-fluid">
-    <p> voici votre panier </p>
+    <h2> Votre panier </h2>
 
 <?php
-  	$requete = "Select Enregistrement.Titre, Album.Code_Album from Achat 
+  	$requete = "Select Enregistrement.Titre, Enregistrement.Code_Morceau, Album.Code_Album from Achat 
     inner join Abonné on Abonné.Code_Abonné = Achat.Code_Abonné
     inner join Enregistrement on Enregistrement.Code_Morceau = Achat.Code_Enregistrement
     inner join Composition_Disque on Composition_Disque.Code_Morceau = Enregistrement.Code_Morceau
@@ -24,12 +24,22 @@ if (isset($_SESSION["Login"]))
       echo "<i>Il n'y a rien dans votre panier actuellement</i>";
     } else {
 	foreach ($pdo->query($requete) as $row) {
+    echo $row['Code_Album'] . "and " . $_SESSION['Login'];
         
-    echo '<a href="bd/album.php?code=' . $row['Code_Album'] . '">
-    <h3>'. $row['Titre'] . '</h3>
-    </a> <br>  <img src="/Classique/Home/Pochette/' . $row['Code_Album'] . '" alt="Photo" width="100"> <form method="get"> 
-    <span class="btn"><input type="submit" name="supprimer" value="' . $row['Code_Album'] .'"/></span></form>'; 
+    $req = "SELECT count(*) as Nombre from Achat 
+    Inner join Abonné on Abonné.Code_Abonné = Achat.Code_Abonné
+    where Code_Enregistrement = ". $row['Code_Morceau'] . " and Login like '". $_SESSION['Login'] . "'" ;
+    $prepare = $pdo->query($req);
+    $nb = $prepare->fetch();
 
+    $tabl = array("Code_Album" => $row['Code_Album'], "Titre" => $row['Titre']);
+    $tab = array_unique($tabl);
+
+    echo '<a href="bd/album.php?code=' . $tab['Code_Album'] . '">
+    <h3>'. $tab['Titre'] . '</h3> x ' . $nb['Nombre'] . '
+    </a> <br>  <img src="/Classique/Home/Pochette/' . $tab['Code_Album'] . '" alt="Photo" width="100"> <form method="get"> 
+    <span class="btn"><input type="submit" name="supprimer" value="' . $tab['Code_Album'] .'"/></span></form>'; 
+    
     }
     if(!empty($_REQUEST['supprimer'])) {
       $data2 = NULL;

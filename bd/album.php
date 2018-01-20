@@ -14,17 +14,7 @@
 
 <p>	
 <?php
-// Paramètres de connexion
-$host = 'INFO-SIMPLET';
-$nomDb = 'Classique_Web';
-$user = 'ETD';
-$password = 'ETD';
-// Chaîne de connexion (Windows)
-$pdodsn = "sqlsrv:Server=$host;Database=$nomDb";
-// // Chaîne de connexion (Linux)
-// $pdodsn = "dblib:version=7.0;charset=UTF-8;host=$host;dbname=$nomDb";
-// Connexion PDO
-$pdo = new PDO($pdodsn, $user, $password);
+include("../includes/identifiants.php");
 
 if (!empty($_GET["code"])) {
 	$code = $_GET["code"];
@@ -59,11 +49,7 @@ if (!empty($_GET["code"])) {
 }
 if (!empty($_GET["ajout"])) {
 		$codeAlbum = $_GET["ajout"];
-<<<<<<< HEAD
 		$login = $_SESSION["Login"];		
-=======
-		$login = $_SESSION["Login"];
->>>>>>> e1f1a2cfe32e4902e40629cadf85e42f71059a75
 		
 		$requete = "SELECT Enregistrement.Code_Morceau from Album
 		Inner Join Disque On Disque.Code_Album = Album.Code_Album
@@ -85,13 +71,6 @@ if (!empty($_GET["ajout"])) {
 		$requete = "INSERT INTO Achat(Code_Enregistrement, Code_Abonné) 
 			VALUES(" . $codeEnregistrement . "," . $codeAbonne . ")";
 		$buffer = $pdo->query($requete);
-<<<<<<< HEAD
-=======
-		
-		echo "<h3>Article ajouté à votre panier !</h3>
-		<p><a href=\"../panier.php\">Pour accéder au panier cliquez ici</a></p>
-		<p><a href=\"../index.php\">Pour revenir à l'accueil cliquez ici</a></p> ";
->>>>>>> e1f1a2cfe32e4902e40629cadf85e42f71059a75
 }
 		$pdo = null;
 ?>

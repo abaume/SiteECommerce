@@ -1,6 +1,7 @@
-<input type="hidden" name="page" value="<?php echo $_SERVER['HTTP_REFERER']; ?>" />
 
-<?php 
+<?php if (!empty($_SERVER['HTTP_REFERER'])) {
+    echo '<input type="hidden" name="page" value=" ' . $_SERVER['HTTP_REFERER'] . '" />';
+}
 
 if (isset ($_COOKIE['Login']) && empty($id)) {
     $_SESSION['Login'] = $_COOKIE['Login'];
