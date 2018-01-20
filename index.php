@@ -6,6 +6,8 @@
 
   include('/includes/menu.inc.php'); ?>
 
+<?php echo'<i>Vous êtes ici : </i><a href ="./index.php">Index du forum</a>';?>
+
 <div class="container-fluid row">
   <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 ">
     <h1>Présentation du site</h1>

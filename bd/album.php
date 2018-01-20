@@ -10,7 +10,7 @@
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
 <div style="margin-left:25%">
-<h3>Album - détailsEnd</h3> 
+<h3>Album - détails</h3> 
 
 <p>	
 <?php
@@ -35,10 +35,13 @@ if (!empty($_GET["code"])) {
 	echo 
 		"<h3><form method=\"get\"><img src=\"/Classique/Home/Pochette/" . 
 		$donne['Code_Album'] . "\" alt=\"Photo\" width=\"100\">  " . 
-		$donne['Titre_Album'] .
-		"<span class=\"btn\"><input type=\"submit\" value=\"" . $code . 
-		"\" name=\"ajout\"</span></form></h3>";
-		
+		$donne['Titre_Album'];
+		if (!empty($_SESSION["Login"])){
+			echo
+			"<span class=\"btn\">
+			<input type=\"hidden\" value=\"" . $code . "\" name=\"ajout\">" .
+			"<input type=\"submit\" value=\"Ajouter\" /> . </span></form></h3>";
+		}		
 	echo "<h3> Morceaux </h3>";
 	
     $requete = "Select Distinct Disque.Code_Disque, Album.ASIN, Enregistrement.Titre, Enregistrement.Durée, Enregistrement.Code_Morceau from Album
@@ -56,7 +59,11 @@ if (!empty($_GET["code"])) {
 }
 if (!empty($_GET["ajout"])) {
 		$codeAlbum = $_GET["ajout"];
+<<<<<<< HEAD
 		$login = $_SESSION["Login"];		
+=======
+		$login = $_SESSION["Login"];
+>>>>>>> e1f1a2cfe32e4902e40629cadf85e42f71059a75
 		
 		$requete = "SELECT Enregistrement.Code_Morceau from Album
 		Inner Join Disque On Disque.Code_Album = Album.Code_Album
@@ -78,6 +85,13 @@ if (!empty($_GET["ajout"])) {
 		$requete = "INSERT INTO Achat(Code_Enregistrement, Code_Abonné) 
 			VALUES(" . $codeEnregistrement . "," . $codeAbonne . ")";
 		$buffer = $pdo->query($requete);
+<<<<<<< HEAD
+=======
+		
+		echo "<h3>Article ajouté à votre panier !</h3>
+		<p><a href=\"../panier.php\">Pour accéder au panier cliquez ici</a></p>
+		<p><a href=\"../index.php\">Pour revenir à l'accueil cliquez ici</a></p> ";
+>>>>>>> e1f1a2cfe32e4902e40629cadf85e42f71059a75
 }
 		$pdo = null;
 ?>
