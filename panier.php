@@ -2,6 +2,7 @@
     <title>Panier</title>
   </head>
   <?php include('/includes/menu.inc.php'); 
+  include('/includes/identifiants.php');
 
 if (isset($_SESSION["Login"]))
 {
@@ -10,7 +11,7 @@ if (isset($_SESSION["Login"]))
     <h2> Votre panier </h2>
 
 <?php
-  	$requete = "Select Enregistrement.Titre, Enregistrement.Code_Morceau, Album.Code_Album from Achat 
+  	$requete = "Select distinct Enregistrement.Titre, Enregistrement.Code_Morceau, Album.Code_Album from Achat 
     inner join Abonné on Abonné.Code_Abonné = Achat.Code_Abonné
     inner join Enregistrement on Enregistrement.Code_Morceau = Achat.Code_Enregistrement
     inner join Composition_Disque on Composition_Disque.Code_Morceau = Enregistrement.Code_Morceau
@@ -24,7 +25,6 @@ if (isset($_SESSION["Login"]))
       echo "<i>Il n'y a rien dans votre panier actuellement</i>";
     } else {
 	foreach ($pdo->query($requete) as $row) {
-    echo $row['Code_Album'] . "and " . $_SESSION['Login'];
         
     $req = "SELECT count(*) as Nombre from Achat 
     Inner join Abonné on Abonné.Code_Abonné = Achat.Code_Abonné
@@ -32,26 +32,25 @@ if (isset($_SESSION["Login"]))
     $prepare = $pdo->query($req);
     $nb = $prepare->fetch();
 
-    $tabl = array("Code_Album" => $row['Code_Album'], "Titre" => $row['Titre']);
-    $tab = array_unique($tabl);
-
-    echo '<a href="bd/album.php?code=' . $tab['Code_Album'] . '">
-    <h3>'. $tab['Titre'] . '</h3> x ' . $nb['Nombre'] . '
-    </a> <br>  <img src="/Classique/Home/Pochette/' . $tab['Code_Album'] . '" alt="Photo" width="100"> <form method="get"> 
-    <span class="btn"><input type="submit" name="supprimer" value="' . $tab['Code_Album'] .'"/></span></form>'; 
+    echo '<a href="bd/album.php?code=' . $row['Code_Album'] . '">
+    <h3>'. $row['Titre'] . '</h3>
+    </a> <br>  <img src="/Classique/Home/Pochette/' . $row['Code_Album'] . '" alt="Photo" width="100"> x ' . $nb['Nombre'] . '<form method="get"> 
+    <span class="btn"><input type="submit" name="supprimer" value="' . $row['Code_Album'] .'"/></span></form>'; 
     
-    }
+    
     if(!empty($_REQUEST['supprimer'])) {
-      $data2 = NULL;
-      while (empty($data2)) {
-        $AlbumRequete = "SELECT Enregistrement.Code_Morceau FROM Enregistrement 
+      
+      $AlbumRequete = "SELECT Achat.Code_Achat from Achat
+                        inner join Abonné on Abonné.Code_Abonné = Achat.Code_Abonné
+                        inner join Enregistrement on Enregistrement.Code_Morceau = Achat.Code_Enregistrement
                         inner join Composition_Disque on Composition_Disque.Code_Morceau = Enregistrement.Code_Morceau
                         inner join Disque on Disque.Code_Disque = Composition_Disque.Code_Disque 
                         inner join Album on Album.Code_Album = Disque.Code_Album
-                        WHERE Album.Code_Album = " . $_REQUEST['supprimer'];
+                        where Album.Code_Album =" . $row['Code_Album'] . "and Login like '" . $_SESSION['Login'] . "'";
       $data2 = $pdo->query($AlbumRequete)->fetch();
-      echo "données = " . $data2['Code_Morceau'];
-      $SuppressionRequete = "DELETE FROM Achat WHERE Code_Enregistrement =" . $data2['Code_Morceau'] ;
+
+      $SuppressionRequete = "DELETE FROM Achat WHERE Code_Achat =" . $data2['Code_Achat'] ;
+      $supprimer = $pdo->query($SuppressionRequete);
       }
       
     }
