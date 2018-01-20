@@ -38,8 +38,8 @@ class AmazonECS
    * @var array
    */
   private $responseConfig = array(
-    'returnType'          => self::RETURN_TYPE_OBJECT,
-    'responseGroup'       => 'Small',
+    'returnType'          => self::RETURN_TYPE_ARRAY,
+    'responseGroup'       => 'Large',
     'optionalParameters'  => array()
   );
 
@@ -321,7 +321,7 @@ class AmazonECS
    *
    * @return mixed
    */
-  protected function returnData($object)
+  public function returnData($object)
   {
     switch ($this->responseConfig['returnType'])
     {

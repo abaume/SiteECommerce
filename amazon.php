@@ -18,14 +18,14 @@
     {
         $response = $client->responseGroup('Large')->lookup($title);
 		$des = $client->returnData($response);
-		$descr = $ des[""];
+		$descr = $des["Items"]["Item"]["EditorialReviews"]["EditorialReview"]["Content"];
 		echo $descr . "<br>";
-        $items = $response["Items"];
-        $it = $items["Item"];
-        displayItem($it);
+        //$items = $response["Items"];
+        //$it = $items["Item"];
+        //displayItem($it);
     }
 			  
-	print_r($response);
+	//print_r($response);
 	?>
 	</p>
 	</div>
