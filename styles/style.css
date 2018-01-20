@@ -120,6 +120,10 @@ footer a:visited {
     margin-right: 20px;
 }
 
+.navbar {
+	min-height: 0px !important;
+}
+
 .navbar ul {
     list-style-type: none;
     margin: 0;
@@ -230,5 +234,5 @@ fieldset {
 	padding-top: 5px;
 	padding-left: 8px;
 	background-color: #f1f1f1;
-	border: 1px solid #ff9900;
+	border: 2px solid #ff9900;
 }
