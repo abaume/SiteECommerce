@@ -1,6 +1,7 @@
 #menu_horizontal li {
     padding: 0 1 em;
     float: left;
+    margin: auto;
 }
 
 #menu_horizontal {
@@ -9,6 +10,7 @@
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    text-align: center;
 }
 
 #menu_horizontal li a {
@@ -31,6 +33,24 @@
     float: right;
 }
 
+#menu_horizontal li ul {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    list-style-type: none;
+}
+
+#menu_horizontal li:hover ul {
+    display: block;
+    list-style-type: none;
+    -webkit-padding-start: 0px;
+}
+
+#menu_horizontal li:hover ul li {
+    float: none;
+    list-style-type: none;
+}
+
 label {
     display: block;
     width: 150px;
@@ -49,7 +69,7 @@ body {
 }
 
 p {
-    text-align: justify;    
+    text-align: justify;
 }
 
 h3 {
@@ -161,7 +181,6 @@ footer a:visited {
     min-width: 160px;
 }
 
-
 .navbar .dropdown-content {
     display: none;
     position: fixed;
@@ -169,12 +188,12 @@ footer a:visited {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-	left: 140px;
+    left: 140px;
 }
 
 .navbar .dropdown-content a {
-	position: relative;
-	z-index: 2;
+    position: relative;
+    z-index: 2;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -224,13 +243,14 @@ fieldset {
 }
 
 .amazon {
-	position: relative;
-	z-index: -1;
+    position: relative;
+    z-index: -1;
     padding-top: 5px;
     padding-left: 8px;
     background-color: #f1f1f1;
     border: 2px solid #ff9900;
 }
+
 .texte {
-	margin-left: 170px !important;
+    margin-left: 170px !important;
 }
