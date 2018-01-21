@@ -8,7 +8,9 @@
       <form method="get">Lettre(s): 
       <input type="text" name="n" />
       <br />
-      <input type="submit" value="Afficher (longue attente)" />
+	  <span class="btn">
+      <input type="submit" value="Afficher" />
+	  </span>
       <br />
       <br /></form><?php
       include("../includes/identifiants.php");
