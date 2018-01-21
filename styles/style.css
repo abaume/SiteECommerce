@@ -243,6 +243,11 @@ fieldset {
     text-align: center;
 }
 
+.instrument {
+	border: 3px solid #ddd;
+	width: 100%;
+}
+
 .amazon {
     position: relative;
     z-index: -1;
