@@ -33,7 +33,7 @@ if (empty($_POST['pseudo'])) {
         <label for="Mail"> Adresse mail :</label> <input name="Mail" type ="text" id="Mail"/> <br/>
     </fieldset> 
 <p> Les champs précédés d'un * sont obligatoires</p> 
-<p> <input type="submit" value="S'inscrire" /> </p> </form>
+<p> <span class="btn"><input type="submit" value="S'inscrire" /></p></form></span>
 <label> Se souvenir de moi ?</label><input type="checkbox" name ="souvenir"/><br />
 </div>
         <?php

@@ -25,7 +25,7 @@ if (!isset($_POST['Login']))
     </p>
     </fieldset>
     <p>
-    <input name="Connect" type="submit" value="Connecter" /></form>
+    <span class="btn"><input name="Connect" type="submit" value="Connecter"/></form></span>
     <a href="enregistrement.php"> Pas encore inscrit ?</a>
 	</div>
   <?php
