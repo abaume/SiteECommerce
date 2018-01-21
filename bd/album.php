@@ -29,23 +29,18 @@ if (!empty($_GET["code"])) {
 	$donne = $buffer->fetch();
 		
     $client = new AmazonECS(Aws_ID, Aws_SECRET, 'FR', associateTag);
-    $category = 'Musique';
-    $title = $donne['ASIN'];
-    $mode = 'ASIN';
+    $category = 'Musique';    
+	if (!empty($donne['ASIN']))
+	{
+		$title = $donne['ASIN'];
+		$mode = 'ASIN';
+	}
+	else{
+		$title =  $donne['Titre_Album'];
+		$mode = 'Item';
+	}
 	if($mode == 'ASIN')
-    {		
-	$response;
-		$array;
-		$review;
-		$price;
-		$url;
-		$image;
-		$artist;
-		$format;
-		$marque;
-		$label;
-		$date;	
-    
+    {   
 		echo "<div class=\"container\"><div class=\"row\"><div class=\"col-sm-6\"><div class=\"amazon\"><h3>Amazon</h3>";
 		$response = $client->responseGroup('Large')->lookup($title);
 		$array = $client->returnData($response);
@@ -116,6 +111,27 @@ if (!empty($_GET["code"])) {
 			};
 		echo "</div></div>";
     }
+	else if($mode == 'Item'){
+		$amazonEcs = new AmazonECS(Aws_ID, Aws_SECRET, 'FR', associateTag);
+		$response = $amazonEcs->category('Music')->responseGroup('Large')->search($title);
+		echo "<div class=\"container\"><div class=\"row\"><div class=\"col-sm-6\"><div class=\"amazon\"><h3>Amazon</h3>
+		<h4>Albums semblables :</h4><ul>";
+		$array = $client->returnData($response);
+		if(isset($array["Items"]["Item"])){
+			$titre = $array["Items"]["Item"];
+		}
+		//print_r ($array["Items"]["Item"][0]);
+		if(!empty($titre)){
+			for($i = 0; $i<sizeof($titre) ; $i++){
+				echo "<li><a href=\"" . $array["Items"]["Item"][$i]["DetailPageURL"] . "\"target=\"_blank\">" . $array["Items"]["Item"][$i]["ItemAttributes"]["Title"] . "</a></li>";			
+			}
+			echo "</ul>";
+		}
+		else{
+			echo "Pas d'albums semblables";
+		}
+		echo "</div></div>";
+	}
 	
 	echo 
 		"<div class=\"col-sm-6\"><h3>BD</h3><h3><form method=\"get\"><img src=\"/Classique/Home/Pochette/" . 
