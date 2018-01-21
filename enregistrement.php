@@ -4,13 +4,14 @@
   $id=(isset($_SESSION['id']))?(int) $_SESSION['id']:0;
   $pseudo=(isset($_SESSION['pseudo']))?$_SESSION['pseudo']:'';
 
-  if ($id !=0) erreur(ERR_IS_CO);
-
+  /* on récupère l'adresse de la page précédente */
   $url = $_SERVER["REQUEST_URI"];
 
+  /* si on n'est pas connecté */
   if (empty($_POST['pseudo'])) {
       ?>
   <body>
+    <!-- on crée un formulaire pour récupérer les données envoyées à Traite_Enregistrement -->
     <h1>Inscription</h1>
     <form method="post" action="Traite_Enregistrement.php?url=<?php echo $url?>">
       <fieldset>

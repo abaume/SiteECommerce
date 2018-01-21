@@ -2,13 +2,14 @@
     <title>deconnexion</title>
   </head><?php 
   session_start();
-  $_SESSION = array();
 
+  /* on détruit la session en enlevant toutes les variables de session */
+  $_SESSION = array();
   if (isset ($_COOKIE['Login'])) {
       setcookie('Login', '', -1);
   }
-
   session_destroy();
+
   $titre="Déconnexion";
   include('/includes/menu.inc.php'); 
 
