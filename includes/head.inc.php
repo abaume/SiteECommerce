@@ -5,9 +5,9 @@
 <head>
 <link rel="stylesheet" href="styles/style.css" />
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-<meta name="generator"
-    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 
 <?php 
 $PseudoUser=(isset($_SESSION['Login']))?$_SESSION['Login']:'';
