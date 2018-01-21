@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <nav>
 <ul id="menu_horizontal">
   <li class="bouton_gauche"><a href = "../index.php"> ACCUEIL </a></li>
