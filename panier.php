@@ -73,14 +73,14 @@ if (isset($_SESSION["Login"]))
       }
     }
 
-    ?> <form method="get">
-    <span class="btn"><input type="submit" name="vider" value="vider panier" /></span></form>
-    <form method="get">
-    <span class="btn"><input type="submit" name="commander" value="commander" /></span></form>
+    ?> <p><form method="get">
+    <span class="btn-group">
+	<input type="submit" name="vider" value="Vider panier" class="bt"/>
+    <input type="submit" name="commander" value="Commander" class="bt"/></form>
 
     <?php
   }
-  echo '<form method="post" action="historique.php" ><input name="historique" type="submit" value="accéder à mon historique de commandes" /></span></form>';
+  echo '<form method="post" action="historique.php"><input name="historique" type="submit" value="Accéder à mon historique de commandes" /></span></form></p>';
 	$pdo = null;
 ?>
 
