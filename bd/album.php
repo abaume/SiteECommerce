@@ -115,6 +115,7 @@ if (!empty($_GET["code"])) {
 		$amazonEcs = new AmazonECS(Aws_ID, Aws_SECRET, 'FR', associateTag);
 		$response = $amazonEcs->category('Music')->responseGroup('Large')->search($title);
 		echo "<div class=\"container\"><div class=\"row\"><div class=\"col-sm-6\"><div class=\"amazon\"><h3>Amazon</h3>
+		L'album recherché n'est pas disponible sur Amazon.
 		<h4>Albums semblables :</h4><ul>";
 		$array = $client->returnData($response);
 		if(isset($array["Items"]["Item"])){
