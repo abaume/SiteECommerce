@@ -47,7 +47,7 @@
           } else {
               $message = '<p>Une erreur s\'est produite 
               pendant votre identification.<br /> Le mot de passe ou le pseudo 
-                  entré n\'est pas correct.</p><p>Cliquez <a href="'. $url . '">ici</a> 
+                  entré n\'est pas correct.</p><p>Cliquez <a href="connexion.php">ici</a> 
               pour revenir à la page précédente';
           }
           /* on n'oublie pas de fermer la requete préparée pour qu'elle soit réutilisable */
