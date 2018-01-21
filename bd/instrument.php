@@ -9,8 +9,8 @@
 
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
-<div style="margin-left:25%">
-<h3>Instruments</h3> 
+<div class="texte">
+<h3>Instruments</h3>
 
 <p>
 	
@@ -46,6 +46,7 @@ $pdo = new PDO($pdodsn, $user, $password);
 //}
 ?>
 </p>
+</div>
 </div>
 </body>
 </html>

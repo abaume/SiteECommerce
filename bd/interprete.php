@@ -9,8 +9,8 @@
 
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
-<div style="margin-left:25%">
-<h3>Interprètes commancants par la/les lettre(s)...</h3> 
+<div class="texte">
+<h3>Interprètes commancants par la/les lettre(s)...</h3>
 
 <form method="get">
 	Lettre(s): <input type="text" name="n" /><br />
@@ -47,6 +47,7 @@ if (!empty($_GET["n"])) {
 //	echo "écrivez une lettre dans la case !";
 //}
 ?>
+</div>
 </div>
 </body>
 </html>

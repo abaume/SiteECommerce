@@ -9,7 +9,7 @@
 
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
-<div style="margin-left:25%">
+<div class="texte">
 <h2>Album - détails</h2> 
 
 <p>	
@@ -177,6 +177,7 @@ if (!empty($_GET["ajout"]) && !empty($_SESSION["Login"])) {
 		$pdo = null;
 ?>
 </p>
+</div>
 </div>
 </body>
 </html>

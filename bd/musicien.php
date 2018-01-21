@@ -9,7 +9,7 @@
 
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
-<div style="margin-left:25%">
+<div class="texte">
 <h3>Musicien - détails</h3> 
 
 <p>	
@@ -95,6 +95,7 @@ if (!empty($_GET["code"]) && !empty($_GET["fonction"])) {
 //}
 ?>
 </p>
+</div>
 </div>
 </body>
 </html>

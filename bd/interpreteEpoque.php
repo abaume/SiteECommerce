@@ -9,7 +9,7 @@
 
 <h1>Base de données</h1> 
 <?php include('../includes/navbarBD.inc.php'); ?>
-<div style="margin-left:25%">
+<div class="texte">
 <h3>Interprètes de l'époque...</h3> 
 
 <form method="get">
@@ -99,6 +99,7 @@ if (!empty($_GET["epoque"])) {
 //	echo "écrivez une lettre dans la case !";
 //}
 ?>
+</div>
 </div>
 </body>
 </html>

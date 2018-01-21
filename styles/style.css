@@ -49,8 +49,7 @@ body {
 }
 
 p {
-    text-align: justify;
-    margin-left: 170px !important;
+    text-align: justify;    
 }
 
 h3 {
@@ -234,4 +233,7 @@ fieldset {
     padding-left: 8px;
     background-color: #f1f1f1;
     border: 2px solid #ff9900;
+}
+.texte {
+	margin-left: 170px !important;
 }
