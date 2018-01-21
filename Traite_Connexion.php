@@ -5,7 +5,6 @@
 <title>connexion</title>
 </head> 
 <?php
-session_start();
 include('/includes/menu.inc.php'); 
 
     $message='';

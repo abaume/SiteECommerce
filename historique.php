@@ -13,7 +13,7 @@ if (isset($_SESSION["Login"]))
     <h2> Vos dernières commandes </h2>
 
 <?php
-  	$requete = "Select distinct Achat.Code_Achat, Enregistrement.Titre, Enregistrement.Code_Morceau, Album.Code_Album from Achat 
+  	$requete = "Select distinct Top 5 Achat.Code_Achat, Enregistrement.Titre, Enregistrement.Code_Morceau, Album.Code_Album from Achat 
     inner join Abonné on Abonné.Code_Abonné = Achat.Code_Abonné
     inner join Enregistrement on Enregistrement.Code_Morceau = Achat.Code_Enregistrement
     inner join Composition_Disque on Composition_Disque.Code_Morceau = Enregistrement.Code_Morceau
@@ -22,11 +22,17 @@ if (isset($_SESSION["Login"]))
     where Login = '" . $_SESSION["Login"] ."' AND Achat.Achat_Confirmé IS NOT NULL
     ORDER BY Achat.Code_Achat, Enregistrement.Code_Morceau, Album.Code_Album, Enregistrement.Titre  DESC"  ;
     $buffer = $pdo->query($requete);
-    $data=$buffer->fetch();
+    $data = $buffer->fetch();
 
     if (empty($data)) {
       echo '<i>Il n\'y a rien dans votre historique actuellement, <a href = "panier.php">pour revenir dans votre panier, cliquez ici</a></i>';
     } else {
+    //     for ($i = 0; $i<10; $i++) {
+    //         $data = $buffer->fetch();
+    //         echo '<a href="bd/album.php?code=' . $data['Code_Album'] . '">
+    // <h3>'. $data['Titre'] . '</h3>
+    // </a> <br><img src="/Classique/Home/Pochette/' . $data['Code_Album'] . '" alt="Photo" width="100"> '; 
+    //     }
 	foreach ($pdo->query($requete) as $row) {
         echo '<a href="bd/album.php?code=' . $row['Code_Album'] . '">
     <h3>'. $row['Titre'] . '</h3>

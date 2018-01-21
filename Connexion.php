@@ -8,7 +8,6 @@ $pseudo=(isset($_SESSION['Login']))?$_SESSION['Login']:'';
 
 $url=$_SERVER['HTTP_REFERER'];
 
- session_start();
 if ($id !=0) erreur(ERR_IS_CO);
 else {
 
