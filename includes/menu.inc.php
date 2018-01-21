@@ -1,10 +1,10 @@
 <?php 
-session_start();
+
+include('/membre_connecte.inc.php');
   ?>
 
 <nav>
 <ul id="menu_horizontal">
-<?php include('/membre_connecte.inc.php'); ?>
 <li class="bouton_gauche"><a href = "index.php"> ACCUEIL </a></li>
 <li class="bouton_gauche"><a href = "apropos.php"> A PROPOS </a></li>
 <li class="bouton_gauche"><a href = "bd/baseIndex.php"> ALBUMS </a></li>

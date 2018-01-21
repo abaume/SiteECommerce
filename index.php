@@ -3,7 +3,7 @@
     <title>Accueil</title>
   </head>
   <?php
-
+  session_start();
   include('/includes/menu.inc.php'); ?>
 
 <div class="container-fluid row">

@@ -1,7 +1,9 @@
 <?php include('/includes/head.inc.php'); ?>
     <title>Panier</title>
   </head>
-  <?php include('/includes/menu.inc.php'); 
+  <?php
+  session_start(); 
+  include('/includes/menu.inc.php'); 
   include('/includes/identifiants.php');
 
 if (isset($_SESSION["Login"]))
