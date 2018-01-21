@@ -17,7 +17,7 @@ if (isset($_SESSION["Login"]))
     inner join Composition_Disque on Composition_Disque.Code_Morceau = Enregistrement.Code_Morceau
     inner join Disque on Disque.Code_Disque = Composition_Disque.Code_Disque 
     inner join Album on Album.Code_Album = Disque.Code_Album
-    where Login = '" . $_SESSION["Login"] ."'";
+    where Login = '" . $_SESSION["Login"] ."' AND Achat.Achat_Confirmé IS NULL"  ;
     $buffer = $pdo->query($requete);
     $data=$buffer->fetch();
 
@@ -37,16 +37,15 @@ if (isset($_SESSION["Login"]))
     </a> <br>  <form method="get"><img src="/Classique/Home/Pochette/' . $row['Code_Album'] . '" alt="Photo" width="100"> x ' . $nb['Nombre'] . ' 
     <span class="btn"><input type="hidden" name="supprimer" value="' . $row['Code_Album'] .'"/><input type="submit" value="Supprimer" /></span></form>'; 
     
-    
-    if(!empty($_REQUEST['supprimer'])) {
-      
-      $AlbumRequete = "SELECT Achat.Code_Achat from Achat
+    $AlbumRequete = "SELECT * from Achat
                         inner join Abonné on Abonné.Code_Abonné = Achat.Code_Abonné
                         inner join Enregistrement on Enregistrement.Code_Morceau = Achat.Code_Enregistrement
                         inner join Composition_Disque on Composition_Disque.Code_Morceau = Enregistrement.Code_Morceau
                         inner join Disque on Disque.Code_Disque = Composition_Disque.Code_Disque 
                         inner join Album on Album.Code_Album = Disque.Code_Album
                         where Album.Code_Album =" . $row['Code_Album'] . "and Login like '" . $_SESSION['Login'] . "'";
+    
+    if(!empty($_REQUEST['supprimer'])) {
       $data2 = $pdo->query($AlbumRequete)->fetch();
 
       $SuppressionRequete = "DELETE FROM Achat WHERE Code_Achat =" . $data2['Code_Achat'] ;
@@ -65,11 +64,21 @@ if (isset($_SESSION["Login"]))
       }
     }
 
+    if (!empty($_REQUEST['commander'])) {
+      foreach ($pdo->query($AlbumRequete) as $row) {
+        $RequeteUpdate = "UPDATE Achat SET Achat_Confirmé = 1 WHERE Code_Achat =" . $row['Code_Achat'];
+        $buffer = $pdo->query($RequeteUpdate);
+      }
+    }
+
     ?> <form method="get">
     <span class="btn"><input type="submit" name="vider" value="vider panier" /></span></form>
+    <form method="get">
+    <span class="btn"><input type="submit" name="commander" value="commander" /></span></form>
 
     <?php
-	}
+  }
+  echo '<form method="post" action="historique.php" ><input name="historique" type="submit" value="accéder à mon historique de commandes" /></span></form>';
 	$pdo = null;
 ?>
 

@@ -8,7 +8,7 @@ if (isset ($_COOKIE['Login']) && empty($id)) {
 }
 
 if (!empty($_SESSION['Login'])) {
-    echo "Vous êtes connecté en tant que " . $_SESSION['Login'] . "<br />";
+    echo '<span class ="connexion">Vous êtes connecté en tant que <i>' . $_SESSION['Login'] . '</i></span><br />';
 } else {
     echo "Vous n'êtes pas connecté <br />";
 }

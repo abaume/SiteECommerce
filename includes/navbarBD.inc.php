@@ -1,5 +1,4 @@
-<div class="navbar">
-      <ul>
+      <ul class="navbar">
         <li>
           <a href = "baseIndex.php">Accueil</a>
         </li>
@@ -26,4 +25,3 @@
           <a href="genre.php">Genres</a>
         </li>
       </ul>
-    </div>
