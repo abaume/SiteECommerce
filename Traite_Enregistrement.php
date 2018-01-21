@@ -17,6 +17,7 @@
     $i = 0;
     $pseudo_erreur = NULL;
     $mdp_erreur = NULL;
+    $mail_free = 1;
     $message = "";
 
     if (empty($PasswordUser) || empty($LoginUser)) {
@@ -29,7 +30,6 @@
         if (!empty($EmailUser)) { // traiter email
             $repmail= $pdo->query("SELECT COUNT(*) AS nb FROM Abonné WHERE Email = '$EmailUser'");
             $mail_free = ($repmail->fetchColumn()==0)?1:0;
-        
             }
         }
     
@@ -46,7 +46,6 @@
             
             $test = $pdo->query("select Pays.Code_Pays from Pays Where Nom_Pays = '" . $NomPaysUser ."'; ");
             $PaysUser = $test->fetch();
-            echo "pays : " . $PaysUser['Code_Pays'];
 
             $req = 'INSERT INTO Abonné(Nom_Abonné, Prénom_Abonné, Login, Password, Adresse, Code_Postal, Ville, Code_Pays, Email) 
                     VALUES(\'' . $NomUser . '\', \'' .$PrenomUser. '\', \'' . $LoginUser . '\', \'' . $PasswordUser . '\', \'' . $AdresseUser . '\', \'' 
@@ -56,4 +55,4 @@
             $message = '<a href="connexion.php">Vous avez bien été enregistré, bravo ! Pour vous connecter, cliquez ici</a> ';
         }       
     
-    echo $message;
+    echo "<center>" . $message . "<br> Pour revenir à la page précédente, <a href = \"enregistrement.php\">cliquez ici</a></center>";
