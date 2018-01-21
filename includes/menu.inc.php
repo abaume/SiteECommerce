@@ -7,6 +7,7 @@
   <li class="bouton_droite"><a href = "#Compte"> <?php if (empty($_SESSION['Login'])) { 
     echo "MON COMPTE"; } else { echo strtoupper($_SESSION['Login']);} ?> </a>  
     <ul>
+    <li><a href="compte.php"> MON COMPTE </a></li>
       <?php 
       if (empty($_SESSION['Login'])) {
           echo "<li class=\"bouton_droite\"><a href = \"connexion.php\"> CONNEXION </a></li>";

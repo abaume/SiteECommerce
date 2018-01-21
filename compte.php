@@ -1,5 +1,5 @@
 <?php include('/includes/head.inc.php'); ?>
-<title>connexion</title>
+<title>Mon compte</title>
 </head> 
 <?php include('/includes/menu.inc.php'); ?>
 <?php
@@ -9,6 +9,8 @@ $pseudo=(isset($_SESSION['pseudo']))?$_SESSION['pseudo']:'';
 if ($id !=0) erreur(ERR_IS_CO);
 
 $url = $_SERVER["REQUEST_URI"];
+
+$donne = "SHOW COLUMNS from Abonné";
 
 if (empty($_POST['pseudo'])) {
     ?>
