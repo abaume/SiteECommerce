@@ -84,14 +84,15 @@
           }
 
           ?>
+	  <p>
       <form method="get">
         <span class="btn-group">
         <input type="submit" name="vider" value="Vider panier" class="bt" /> 
         <input type="submit" name="commander" value="Commander" class="bt" />
-        </span>
+		</span>
       </form><?php
         }
-        echo '<form method="post" action="historique.php"><input name="historique" type="submit" value="Accéder à mon historique de commandes" /></span></form></p>';
+        echo '<form method="post" action="historique.php"><span class="btn"><input name="historique" type="submit" value="Accéder à mon historique de commandes" class="bt" /></span></form></p>';
               $pdo = null;
       ?>
     </div><?php

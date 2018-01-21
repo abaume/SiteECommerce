@@ -18,7 +18,6 @@
         <br />
       </form><?php
       include("../includes/identifiants.php");
-      $pdo = new PDO($pdodsn, $user, $password);
 
       if (!empty($_GET["epoque"])) {
               $epoque = $_GET["epoque"];      

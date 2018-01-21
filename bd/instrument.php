@@ -9,7 +9,8 @@
         <?php
         include("../includes/identifiants.php");
 
-                $requete1 = "Select Instrument.Nom_Instrument from Instrument Where Instrument.Nom_Instrument NOT LIKE 'Viole d''amour' ";
+                $requete1 = "Select Instrument.Nom_Instrument from Instrument Where Instrument.Nom_Instrument NOT LIKE 'Viole d''amour' AND Instrument.Nom_Instrument NOT LIKE '
+				Composition'";
                 $buffer = $pdo->query($requete1);
                 foreach ($pdo->query($requete1) as $row) {
                     echo "<h4><fieldset class =\"instrument\"><legend>". $row['Nom_Instrument']. "</legend></h4>";

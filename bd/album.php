@@ -123,7 +123,6 @@
                         if(isset($array["Items"]["Item"])){
                                 $titre = $array["Items"]["Item"];
                         }
-                        //print_r ($array["Items"]["Item"][0]);
                         if(!empty($titre)){
                                 for($i = 0; $i<sizeof($titre) ; $i++){
                                         echo "<li><a href=\"" . $array["Items"]["Item"][$i]["DetailPageURL"] . "\"target=\"_blank\">" . $array["Items"]["Item"][$i]["ItemAttributes"]["Title"] . "</a></li>";                   
@@ -145,7 +144,7 @@
 						//Bouton Ajouter si on est connecté
                         if (!empty($_SESSION["Login"])){
                                 echo
-                                "<span class=\"btn\">
+                                "<br><span class=\"btn\">
                                 <input type=\"hidden\" value=\"" . $code . "\" name=\"ajout\">" .
                                 "<input type=\"submit\" value=\"Ajouter\" /> . </span></form></h3>";
                         }                
